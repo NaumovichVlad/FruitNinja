@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 41f1645fab811b84ea41352698c148e5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - moveController: {fileID: -4338457834710222496, guid: de678e536e3611c46b9fdf8b33e7ba80, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
