@@ -108,7 +108,7 @@ public class SpawnController : MonoBehaviour
     {
         if (spawnPosition.x > 0)
         {
-            return -angle;
+            return 180 - angle;
         }
         return angle;
     }

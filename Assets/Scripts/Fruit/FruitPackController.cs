@@ -69,6 +69,6 @@ public class FruitPackController : MonoBehaviour
     {
         var angle = Random.value * (LaunchMaxAngle - LaunchMinAngle) + LaunchMinAngle;
 
-        return new Vector2(speed * Mathf.Cos(angle), speed * Mathf.Abs(Mathf.Sin(angle)));
+        return new Vector2(speed * Mathf.Cos(Mathf.Deg2Rad * angle), speed * Mathf.Sin(Mathf.Deg2Rad * angle));
     }
 }

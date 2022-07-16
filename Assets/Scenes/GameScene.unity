@@ -156,18 +156,18 @@ MonoBehaviour:
   spawnZones:
   - SizeInPercent: 25
     Side: 0
-    LaunchMaxAngle: 80
-    LaunchMinAngle: 60
+    LaunchMaxAngle: 85
+    LaunchMinAngle: 75
     Frequency: 2
   - SizeInPercent: 35
     Side: 1
-    LaunchMaxAngle: 80
-    LaunchMinAngle: 60
+    LaunchMaxAngle: 85
+    LaunchMinAngle: 75
     Frequency: 2
   - SizeInPercent: 99
     Side: 2
-    LaunchMaxAngle: 85
-    LaunchMinAngle: 70
+    LaunchMaxAngle: 89
+    LaunchMinAngle: 80
     Frequency: 10
   fruitPackController: {fileID: 8559374786715214908, guid: 7b00fc692729a8f4c9d1a5fceee5ffe6, type: 3}
   timeStep: 0.5
