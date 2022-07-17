@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &927404438160480995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5270261103916882773}
+  - component: {fileID: 8559374786715214908}
+  m_Layer: 0
+  m_Name: FruitPack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5270261103916882773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927404438160480995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -4.1667495, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8559374786715214908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927404438160480995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1645fab811b84ea41352698c148e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaunchMaxAngle: 85
+  LaunchMinAngle: 75
+  moveController: {fileID: 3357172768033201325, guid: a8443cbc18862b34eb451264f4679bde, type: 3}
+  minRotateSpeed: 10
+  maxRotateSpeed: 15
+  initialFruitsCount: 1
+  speed: 0.2
+  fruitPrefabs:
+  - {fileID: 3760571345263722314, guid: 0f25c9b1f86e56148a90675287c739ff, type: 3}
+  - {fileID: 8394881516735788921, guid: b62ae799b31aa9348873acce5c32cd41, type: 3}
+  - {fileID: 7497530403964250575, guid: 9602b6161bd941444967a26d789bc88c, type: 3}
+  - {fileID: 4752526906670364650, guid: 36a84dab2ed9eee49aa49f3169438622, type: 3}
+  - {fileID: 8330486080960806887, guid: 6276b8cc93439a6469e8f9ca816d9491, type: 3}
+  - {fileID: 7694395574132169133, guid: c1f8b77aa22caca4ca5044ca2fd6b2a0, type: 3}
+  - {fileID: 5656047555086162421, guid: 754530da906304f41af6945ec4e4b383, type: 3}
+  - {fileID: 8098927764350851180, guid: a9f308bfa1b85ec448c0a5ed7bdb7a2c, type: 3}
