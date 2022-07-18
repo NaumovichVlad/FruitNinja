@@ -9,8 +9,8 @@ public class MoveController : MonoBehaviour
 
     public void MoveAndRotate(GameObject fruit, ref Vector2 direction, float rotationSpeed)
     {
-        fruit.transform.Translate(direction, Space.World);
-        fruit.transform.Rotate(new Vector3(0, 0, rotationSpeed));
-        direction += attractiveForce;
+        fruit.transform.Translate(direction * Time.deltaTime, Space.World);
+        fruit.transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
+        direction += attractiveForce * Time.deltaTime;
     }
 }

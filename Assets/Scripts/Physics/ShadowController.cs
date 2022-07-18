@@ -30,7 +30,7 @@ public class ShadowController : MonoBehaviour
         _shadows.Add(shadow);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         RemoveShadows();
         MoveAndRotateShadows();
