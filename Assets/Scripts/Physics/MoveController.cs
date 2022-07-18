@@ -13,6 +13,4 @@ public class MoveController : MonoBehaviour
         fruit.transform.Rotate(new Vector3(0, 0, rotationSpeed));
         direction += attractiveForce;
     }
-
-    
 }

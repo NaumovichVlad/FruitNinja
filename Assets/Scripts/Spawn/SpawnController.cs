@@ -39,6 +39,7 @@ public class SpawnController : MonoBehaviour
     void Launch()
     {
         var frequencies = CalculateFrequency();
+
         StartCoroutine(SpawnFruits(frequencies));
     }
 
@@ -53,10 +54,12 @@ public class SpawnController : MonoBehaviour
             if (frequencies[i] > frequency)
             {
                 var spawnPoint = CreateRandomSpawnInZone(spawnZones[i].SizeInPercent, spawnZones[i].Side);
+
                 fruitPackController.gameObject.transform.position = spawnPoint;
                 fruitPackController.LaunchMinAngle = ConvertAngle(spawnZones[i].LaunchMinAngle, spawnPoint);
                 fruitPackController.LaunchMaxAngle = ConvertAngle(spawnZones[i].LaunchMaxAngle, spawnPoint);
                 Instantiate(fruitPackController.gameObject);
+
                 break;
             }
         }
@@ -110,6 +113,7 @@ public class SpawnController : MonoBehaviour
         {
             return 180 - angle;
         }
+
         return angle;
     }
 }

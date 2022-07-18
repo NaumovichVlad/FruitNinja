@@ -17,7 +17,7 @@ public class FruitPackController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private List<GameObject> fruitPrefabs;
 
-    private class FruitState
+    public class FruitState
     {
         public GameObject Fruit;
 
@@ -31,14 +31,22 @@ public class FruitPackController : MonoBehaviour
         {
             var fruitState = new FruitState();
             var fruit = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
+
             fruit.transform.position = transform.position;
             fruitState.Direction = CalculateRandomDirection();
             fruitState.RotationSpeed = GetRandomRotateSpeed();
             fruitState.Fruit = Instantiate(fruit);
+            ShadowController.GetInstance().CreateShadow(fruitState.Fruit);
+
             _fruits.Add(fruitState);
         }
     }
-    // Start is called before the first frame update
+    
+    public List<FruitState> GetFruitStates()
+    {
+        return _fruits;
+    }
+
     void Start()
     {
        Initialize();
@@ -92,6 +100,7 @@ public class FruitPackController : MonoBehaviour
     private float GetRandomRotateSpeed()
     {
         var direction = new int[] { -1, 1 };
+
         return Random.Range(minRotateSpeed, maxRotateSpeed) * direction[Random.Range(0, 1)];
     }
 
