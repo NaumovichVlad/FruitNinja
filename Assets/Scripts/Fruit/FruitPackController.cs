@@ -15,11 +15,14 @@ public class FruitPackController : MonoBehaviour
     [SerializeField] private float maxRotateSpeed;
     [SerializeField] private int initialFruitsCount;
     [SerializeField] private float speed;
+    [SerializeField] private int fruitRadius;
     [SerializeField] private List<GameObject> fruitPrefabs;
 
     public class FruitState
     {
         public GameObject Fruit;
+
+        public float Radius;
 
         public Vector2 Direction;
 
@@ -34,6 +37,7 @@ public class FruitPackController : MonoBehaviour
 
             fruit.transform.position = transform.position;
             fruitState.Direction = CalculateRandomDirection();
+            fruitState.Radius = fruitRadius;
             fruitState.RotationSpeed = GetRandomRotateSpeed();
             fruitState.Fruit = Instantiate(fruit);
             ShadowController.GetInstance().CreateShadow(fruitState.Fruit);
@@ -49,7 +53,8 @@ public class FruitPackController : MonoBehaviour
 
     void Start()
     {
-       Initialize();
+        Initialize();
+        SwipeDetection.SwipeEvent += OnSwipe;
     }
 
     void FixedUpdate()
@@ -57,6 +62,25 @@ public class FruitPackController : MonoBehaviour
         RemoveMissingFruits();
         DestroyMissingFruits();
         MoveAndRotate();
+    }
+
+    private void OnSwipe(Vector2 direction, Vector2 swipePosition)
+    {
+        for (var i = 0; i < _fruits.Count; i++)
+        {
+            if (CalculateLength((Vector2)_fruits[i].Fruit.transform.position, swipePosition) < _fruits[i].Radius)
+            {
+                Destroy(_fruits[i].Fruit);
+                _fruits.RemoveAt(i);
+                i--;
+            }
+            
+        }
+    }
+
+    private float CalculateLength(Vector2 firstVector, Vector2 secondVector)
+    {
+        return Mathf.Sqrt(Mathf.Pow(firstVector.x - secondVector.x, 2) + Mathf.Pow(firstVector.y - secondVector.y, 2));
     }
 
     private void DestroyMissingFruits()
