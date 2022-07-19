@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927404438160480995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.083683, y: -5, z: 0}
+  m_LocalPosition: {x: -1.3660254, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,19 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f1645fab811b84ea41352698c148e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaunchMaxAngle: 91
-  LaunchMinAngle: 120
+  LaunchMaxAngle: 89
+  LaunchMinAngle: 60
   moveController: {fileID: 3357172768033201325, guid: a8443cbc18862b34eb451264f4679bde, type: 3}
   minRotateSpeed: 100
   maxRotateSpeed: 200
   initialFruitsCount: 2
   speed: 20
   fruitPrefabs:
-  - {fileID: 3760571345263722314, guid: 0f25c9b1f86e56148a90675287c739ff, type: 3}
-  - {fileID: 8394881516735788921, guid: b62ae799b31aa9348873acce5c32cd41, type: 3}
-  - {fileID: 7497530403964250575, guid: 9602b6161bd941444967a26d789bc88c, type: 3}
-  - {fileID: 4752526906670364650, guid: 36a84dab2ed9eee49aa49f3169438622, type: 3}
-  - {fileID: 8330486080960806887, guid: 6276b8cc93439a6469e8f9ca816d9491, type: 3}
-  - {fileID: 7694395574132169133, guid: c1f8b77aa22caca4ca5044ca2fd6b2a0, type: 3}
-  - {fileID: 5656047555086162421, guid: 754530da906304f41af6945ec4e4b383, type: 3}
-  - {fileID: 8098927764350851180, guid: a9f308bfa1b85ec448c0a5ed7bdb7a2c, type: 3}
+  - {fileID: 3602588128650851492, guid: fd9dc2b671ae8114d8134ec632a22ed7, type: 3}
+  - {fileID: 1384314883664143083, guid: f236852b014bca540a70a897178ac953, type: 3}
+  - {fileID: 8541582105265315274, guid: 9f0e921be6eb5d442b48f5bf0502edc6, type: 3}
+  - {fileID: 359563605087285638, guid: 5157fef34bec4624a80dfbac03036b3f, type: 3}
+  - {fileID: 7802017442882068209, guid: 3113227ab43a4a24cb843ae07d0363f0, type: 3}
+  - {fileID: 3120684435628720788, guid: 94bbed7733f0e2947a4c4ef001bb0a1a, type: 3}
+  - {fileID: 6034248409270535178, guid: a9916415a44cbe946a82d27875f730f0, type: 3}
+  - {fileID: 5058408285112761740, guid: 360c402b084e8464c9557243a7afbda7, type: 3}
