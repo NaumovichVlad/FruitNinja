@@ -5,8 +5,9 @@ using UnityEngine;
 public class SwipeDetection : MonoBehaviour
 {
     public static event OnSwipeInput SwipeEvent;
-    public delegate void OnSwipeInput(Vector2 direction, Vector2 swipePosition);
+    public delegate void OnSwipeInput(Vector2 direction, Vector2 swipePosition, float swipeSpeed);
 
+    [SerializeField] private float minSwipeSpeed;
     [SerializeField] private float minSwipeLength;
     [SerializeField] private Camera mainCamera;
 
@@ -58,7 +59,7 @@ public class SwipeDetection : MonoBehaviour
 
     private void CheckSwipe()
     {
-        velocity = Vector2.zero;
+        var speed = velocity.magnitude;
 
         if (isSwiping)
         {
@@ -75,11 +76,13 @@ public class SwipeDetection : MonoBehaviour
             }
         }
 
-        if (velocity.magnitude > minSwipeLength)
+        speed = Mathf.Abs(speed - velocity.magnitude);
+
+        if (velocity.magnitude > minSwipeLength && speed > minSwipeSpeed)
         {
             if (SwipeEvent != null)
             {
-                SwipeEvent(velocity, swipePosition);
+                SwipeEvent(velocity, swipePosition, speed);
             }
 
         }

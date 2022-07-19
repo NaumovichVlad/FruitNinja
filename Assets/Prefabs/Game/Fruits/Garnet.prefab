@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8541582105265315274, guid: 9f0e921be6eb5d442b48f5bf0502edc6, type: 3}
       propertyPath: m_Name
-      value: Fruit
+      value: Garnet
       objectReference: {fileID: 0}
     - target: {fileID: 8541582105265315276, guid: 9f0e921be6eb5d442b48f5bf0502edc6, type: 3}
       propertyPath: m_RootOrder

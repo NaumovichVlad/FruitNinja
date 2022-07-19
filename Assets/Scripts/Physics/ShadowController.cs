@@ -30,6 +30,11 @@ public class ShadowController : MonoBehaviour
         _shadows.Add(shadow);
     }
 
+    public void AddShadow(GameObject shadow)
+    {
+        _shadows.Add(shadow);
+    }
+
     void Update()
     {
         RemoveShadows();
