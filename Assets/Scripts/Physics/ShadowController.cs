@@ -37,31 +37,22 @@ public class ShadowController : MonoBehaviour
 
     void Update()
     {
-        RemoveShadows();
         MoveAndRotateShadows();
     }
 
-    private void RemoveShadows()
+    private void MoveAndRotateShadows()
     {
         for (var i = 0; i < _shadows.Count; i++)
         {
             if (_shadows[i] == null)
             {
-                _shadows.RemoveAt(i);
-                i--;
+                _shadows.RemoveAt(i--);
             }
-        }
-    }
-
-    private void MoveAndRotateShadows()
-    {
-        foreach (var shadow in _shadows)
-        {
-            if (shadow != null)
+            else
             {
-                var parentPosition = new Vector2(shadow.transform.parent.transform.position.x, shadow.transform.parent.transform.position.y - distanceFromObject);
+                var parentPosition = new Vector2(_shadows[i].transform.parent.transform.position.x, _shadows[i].transform.parent.transform.position.y - distanceFromObject);
 
-                shadow.transform.position = parentPosition;
+                _shadows[i].transform.position = parentPosition;
             }
         }
     }

@@ -76,7 +76,6 @@ public class SwipeDetection : MonoBehaviour
             }
 
             velocity = swipePosition - tapPosition;
-            Debug.Log(velocity.magnitude);
         }
 
         speed = Mathf.Abs(speed - velocity.magnitude);

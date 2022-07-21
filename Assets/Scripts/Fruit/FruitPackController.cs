@@ -14,30 +14,24 @@ public class FruitPackController : MonoBehaviour
     public static event OnCut CutEvent;
     public delegate void OnCut(MoveController.MovingObject cutObject, Vector2 cutDirection, float cutSpeed);
 
-    [SerializeField] private MoveController moveController;
     [SerializeField] private float minRotateSpeed;
     [SerializeField] private float maxRotateSpeed;
     [SerializeField] private int initialFruitsCount;
     [SerializeField] private float speed;
-    [SerializeField] private List<GameObject> fruitPrefabs;
+    [SerializeField] private GameObject fruitPrefab;
 
     private void Initialize()
     {
         for (var i = 0; i < initialFruitsCount; i++)
         {
             var fruitState = new MoveController.MovingObject();
-            var fruit = fruitPrefabs[Random.Range(0, fruitPrefabs.Count)];
 
-            fruit.transform.position = transform.position;
+            fruitPrefab.transform.position = transform.position;
             fruitState.Direction = CalculateRandomDirection();
             fruitState.RotationSpeed = GetRandomRotateSpeed();
-            fruitState.Instance = Instantiate(fruit);
+            fruitState.Instance = Instantiate(fruitPrefab);
 
-            for (var j = 0; j < fruitState.Instance.transform.childCount; j++)
-            {
-                ShadowController.GetInstance().CreateShadow(fruitState.Instance.transform.GetChild(j).gameObject);
-            }
-
+            MoveController.GetInstance().AddMovingObject(fruitState);
             _fruits.Add(fruitState);
         }
     }
@@ -50,7 +44,6 @@ public class FruitPackController : MonoBehaviour
 
     void Update()
     {
-        MoveAndRotate();
         RemoveMissingFruits();
     }
 
@@ -58,15 +51,13 @@ public class FruitPackController : MonoBehaviour
     {
         for (var i = 0; i < _fruits.Count; i++)
         {
-            if (CalculateLength((Vector2)_fruits[i].Instance.transform.position, swipePosition) < _fruits[i].Instance.transform.localScale.x)
+            if (_fruits[i].Instance)
             {
-                if (_fruits[i].Instance != null)
+                if (CalculateLength((Vector2)_fruits[i].Instance.transform.position, swipePosition) < _fruits[i].Instance.transform.localScale.x)
                 {
                     CutEvent(_fruits[i], direction, swipeSpeed);
+                    _fruits.RemoveAt(i--);
                 }
-
-                _fruits.RemoveAt(i);
-                i--;
             }
             
         }
@@ -81,7 +72,7 @@ public class FruitPackController : MonoBehaviour
     {
         for (var i = 0; i < _fruits.Count; i++)
         {
-            if (_fruits[i].Instance == null)
+            if (!_fruits[i].Instance)
             {
                 _fruits.RemoveAt(i);
                 i--;
@@ -93,18 +84,6 @@ public class FruitPackController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void MoveAndRotate()
-    {
-        for (var i = 0; i < _fruits.Count; i++)
-        {
-            if(moveController.MoveAndRotate(_fruits[i]))
-            {
-                _fruits.RemoveAt(i--);
-            }
-        }
-    }
-
     private float GetRandomRotateSpeed()
     {
         var direction = new int[] { -1, 1 };
