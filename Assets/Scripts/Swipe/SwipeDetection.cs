@@ -10,6 +10,7 @@ public class SwipeDetection : MonoBehaviour
     [SerializeField] private float minSwipeSpeed;
     [SerializeField] private float minSwipeLength;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private SwipeRenderer swipeRenderer;
 
     private Vector2 tapPosition;
     private Vector2 swipePosition;
@@ -33,6 +34,7 @@ public class SwipeDetection : MonoBehaviour
                 {
                     isSwiping = true;
                     tapPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                    swipeRenderer.AddSwipeLine(tapPosition);
                 }
                 else if(Input.GetTouch(0).phase == TouchPhase.Canceled
                     || Input.GetTouch(0).phase == TouchPhase.Ended)
@@ -47,6 +49,7 @@ public class SwipeDetection : MonoBehaviour
             {
                 isSwiping = true;
                 tapPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                swipeRenderer.AddSwipeLine(tapPosition);
             }
             else if(Input.GetMouseButtonUp(0))
             {
@@ -65,21 +68,23 @@ public class SwipeDetection : MonoBehaviour
         {
             if (isMobile && Input.touchCount > 0)
             {
-                velocity = (Vector2)mainCamera.ScreenToWorldPoint(Input.GetTouch(0).position) - tapPosition;
                 swipePosition = mainCamera.ScreenToWorldPoint(Input.GetTouch(0).position);
-
             }
             else if (Input.GetMouseButton(0))
             {
-                velocity = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) - tapPosition;
                 swipePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             }
+
+            velocity = swipePosition - tapPosition;
+            Debug.Log(velocity.magnitude);
         }
 
         speed = Mathf.Abs(speed - velocity.magnitude);
 
         if (velocity.magnitude > minSwipeLength && speed > minSwipeSpeed)
         {
+            swipeRenderer.ContinueSwipeLine(swipePosition);
+
             if (SwipeEvent != null)
             {
                 SwipeEvent(velocity, swipePosition, speed);
@@ -91,7 +96,7 @@ public class SwipeDetection : MonoBehaviour
     private void ResetSwipe()
     {
         isSwiping = false;
-
+        swipeRenderer.EndSwipeLine();
         tapPosition = Vector2.zero;
         velocity = Vector2.zero;
     }

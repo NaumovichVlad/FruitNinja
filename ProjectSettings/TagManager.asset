@@ -47,3 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SwipeLayer
+    uniqueID: 1311078131
+    locked: 0
