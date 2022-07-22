@@ -9,10 +9,10 @@ public class CuttingController : MonoBehaviour
     [SerializeField] private float boost;
     void Start()
     {
-        FruitPackController.CutEvent += OnCut;
+        FruitController.CutEvent += OnCut;
     }
 
-    private void OnCut(MoveController.MovingObject cutObject, Vector2 cutDirection, float cutSpeed)
+    private void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, Sprite particle, Vector2 cutDirection, float cutSpeed)
     {
         int side = -1;
         for (var i = 0; i < cutObject.Instance.transform.childCount; i++)
@@ -24,12 +24,10 @@ public class CuttingController : MonoBehaviour
             {
                 Instance = halfInstance,
                 RotationSpeed = cutObject.RotationSpeed,
-                Direction = cutDirection + cutObject.Direction
-            }) ;
+                Direction = cutObject.Direction * side
+            });
 
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
-
-            cutDirection.x *= side;
             side *= -1;
         }
 

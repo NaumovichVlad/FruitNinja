@@ -28,8 +28,12 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private List<SpawnZone> spawnZones;
-    [SerializeField] private FruitPackController fruitPackController;
+    [SerializeField] private GameObject fruitPrefab;
     [SerializeField] private float timeStep;
+    [SerializeField] private int fruitCount;
+    [SerializeField] private float minRotateSpeed;
+    [SerializeField] private float maxRotateSpeed;
+    [SerializeField] private float fruitSpeed;
 
     void Start()
     {
@@ -54,12 +58,21 @@ public class SpawnController : MonoBehaviour
             if (frequencies[i] > frequency)
             {
                 var spawnPoint = CreateRandomSpawnInZone(spawnZones[i].SizeInPercent, spawnZones[i].Side);
+                var launchMinAngle = ConvertAngle(spawnZones[i].LaunchMinAngle, spawnPoint);
+                var launchMaxAngle = ConvertAngle(spawnZones[i].LaunchMaxAngle, spawnPoint);
 
-                fruitPackController.gameObject.transform.position = spawnPoint;
-                fruitPackController.LaunchMinAngle = ConvertAngle(spawnZones[i].LaunchMinAngle, spawnPoint);
-                fruitPackController.LaunchMaxAngle = ConvertAngle(spawnZones[i].LaunchMaxAngle, spawnPoint);
-                Instantiate(fruitPackController.gameObject);
+                for (var j = 0; j < fruitCount; j++)
+                {
+                    var fruitState = new MoveController.MovingObject();
 
+                    fruitPrefab.transform.position = spawnPoint;
+                    fruitState.Direction = CalculateRandomDirection(launchMinAngle, launchMaxAngle);
+                    fruitState.RotationSpeed = GetRandomRotateSpeed();
+                    fruitState.Instance = Instantiate(fruitPrefab);
+
+                    MoveController.GetInstance().AddMovingObject(fruitState);
+                }
+               
                 break;
             }
         }
@@ -115,5 +128,19 @@ public class SpawnController : MonoBehaviour
         }
 
         return angle;
+    }
+
+    private float GetRandomRotateSpeed()
+    {
+        var direction = new int[] { -1, 1 };
+
+        return Random.Range(minRotateSpeed, maxRotateSpeed) * direction[Random.Range(0, 1)];
+    }
+
+    private Vector2 CalculateRandomDirection(float minLaunchAngle, float maxLaunchAngle)
+    {
+        var angle = Random.value * (maxLaunchAngle - minLaunchAngle) + minLaunchAngle;
+
+        return new Vector2(fruitSpeed * Mathf.Cos(Mathf.Deg2Rad * angle), fruitSpeed * Mathf.Sin(Mathf.Deg2Rad * angle));
     }
 }

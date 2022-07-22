@@ -24,6 +24,22 @@ public class MoveController : MonoBehaviour
     {
         _movingObjects.Add(movingObject);
     }
+
+    public MovingObject PeekMovingObject(GameObject gameObject)
+    {
+        for (int i = 0; i < _movingObjects.Count; i++)
+        {
+            if (_movingObjects[i].Instance.Equals(gameObject))
+            {
+                var result = _movingObjects[i];
+                _movingObjects.RemoveAt(i);
+                return result;
+            }
+        }
+
+        return null;
+    }
+
     private void MoveAndRotate(MovingObject movingObject)
     {
         movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime, Space.World);
