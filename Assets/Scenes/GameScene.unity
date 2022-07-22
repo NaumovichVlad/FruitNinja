@@ -383,6 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boost: 1
   particlesController: {fileID: 649516426}
+  halfsScatterAngle: 30
 --- !u!114 &649516426
 MonoBehaviour:
   m_ObjectHideFlags: 0
