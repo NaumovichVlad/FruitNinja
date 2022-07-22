@@ -41,6 +41,9 @@ TagManager:
   - name: BackgroundLayer
     uniqueID: 374222887
     locked: 0
+  - name: ParticlesLayer
+    uniqueID: 1082632521
+    locked: 0
   - name: ShadowsLayer
     uniqueID: 3594772081
     locked: 0
