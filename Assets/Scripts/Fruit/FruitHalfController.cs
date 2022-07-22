@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FruitHalfController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     public void CreateNewHalf(Sprite sprite)
     {
-        renderer.sprite = sprite;
+        spriteRenderer.sprite = sprite;
     }
 }

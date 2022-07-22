@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CuttingController : MonoBehaviour
 {
-
-    [SerializeField] MoveController moveController;
     [SerializeField] private float boost;
+    [SerializeField] private ParticlesController particlesController;
     void Start()
     {
         FruitController.CutEvent += OnCut;
@@ -17,10 +16,9 @@ public class CuttingController : MonoBehaviour
         int side = -1;
         for (var i = 0; i < cutObject.Instance.transform.childCount; i++)
         {
-            var half = cutObject.Instance.transform.GetChild(i);
-            var halfInstance = Instantiate(half.gameObject, half.transform.position, half.transform.rotation);
+            var halfInstance = Instantiate(halfs[i], halfs[i].transform.position, halfs[i].transform.rotation);
 
-            moveController.AddMovingObject(new MoveController.MovingObject()
+            MoveController.GetInstance().AddMovingObject(new MoveController.MovingObject()
             {
                 Instance = halfInstance,
                 RotationSpeed = cutObject.RotationSpeed,
@@ -30,7 +28,9 @@ public class CuttingController : MonoBehaviour
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
             side *= -1;
         }
-
+        particlesController.CreateParticles(cutObject.Instance, particle);
         Destroy(cutObject.Instance);
     }
+
+    
 }
