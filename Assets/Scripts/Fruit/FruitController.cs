@@ -57,7 +57,7 @@ public class FruitController : MonoBehaviour
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
             CutEvent(states, halfs, _fruit.Particle, direction, swipeSpeed);
-            ScoreCounterController.GetInstance().AddScore();
+            ScoreCounterController.GetInstance().AddScore(gameObject);
         }
     }
 

@@ -37,7 +37,7 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private float fruitSpeed;
     [SerializeField] private float minTimeStep;
     [SerializeField] private float maxTimeStep;
-    [SerializeField] private int minPackCount;
+    [SerializeField] private int startPackCount;
     [SerializeField] private int maxPackCount;
     [SerializeField] private int scoreForMinStep;
     [SerializeField] private int scoreForMaxPack;
@@ -45,7 +45,7 @@ public class SpawnController : MonoBehaviour
     void Start()
     {
         _timeStep = maxTimeStep;
-        _fruitCount = minPackCount;
+        _fruitCount = startPackCount;
         Launch();
     }
 
@@ -72,7 +72,7 @@ public class SpawnController : MonoBehaviour
                 var launchMinAngle = ConvertAngle(spawnZones[i].LaunchMinAngle, spawnPoint);
                 var launchMaxAngle = ConvertAngle(spawnZones[i].LaunchMaxAngle, spawnPoint);
 
-                for (var j = 0; j < Random.Range(minPackCount, _fruitCount + 1); j++)
+                for (var j = 0; j < Random.Range(1, _fruitCount + 1); j++)
                 {
                     var fruitState = new MoveController.MovingObject();
 
@@ -161,8 +161,8 @@ public class SpawnController : MonoBehaviour
 
         if (score <= scoreForMaxPack)
         {
-            var scoreForIncrease = scoreForMaxPack / maxPackCount;
-            _fruitCount = System.Math.Max(score / scoreForIncrease, minPackCount);
+            var scoreForIncrease = scoreForMaxPack / (maxPackCount - startPackCount);
+            _fruitCount =startPackCount + score / scoreForIncrease;
         }
 
         if (score <= scoreForMinStep)

@@ -53,3 +53,6 @@ TagManager:
   - name: SwipeLayer
     uniqueID: 1311078131
     locked: 0
+  - name: LabelsLayer
+    uniqueID: 3635191765
+    locked: 0

@@ -9,6 +9,7 @@ public class ShadowController : MonoBehaviour
 
     [SerializeField] private GameObject shadowPrefab;
     [SerializeField] private float distanceFromObject;
+    [SerializeField] private float shadowTransparency;
 
     private void Awake()
     {
@@ -23,10 +24,15 @@ public class ShadowController : MonoBehaviour
     public void CreateShadow(GameObject instance)
     {
         var shadowSprite = shadowPrefab.GetComponent<SpriteRenderer>();
-        shadowSprite.color = Color.black;
+        var color = Color.black;
+
+        color.a = shadowTransparency;
+        shadowSprite.color = color;
         shadowSprite.sprite = instance.GetComponent<SpriteRenderer>().sprite;
+
         var shadow = Instantiate(shadowPrefab);
         shadow.transform.SetParent(instance.transform, false);
+
         _shadows.Add(shadow);
     }
 
