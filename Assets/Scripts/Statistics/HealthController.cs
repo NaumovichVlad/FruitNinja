@@ -45,7 +45,10 @@ public class HealthController : MonoBehaviour
         else
         {
             Application.Quit();
+
+#if DEBUG
             UnityEditor.EditorApplication.isPlaying = false;
+#endif
         }
     }
 
