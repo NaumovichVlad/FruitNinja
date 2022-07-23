@@ -78,6 +78,7 @@ public class ParticlesController : MonoBehaviour
     {
         for (var i = 0; i < _particles.Count; i++)
         {
+
             _particles[i].Particle.transform.Translate(new Vector2(0, -_particles[i].ParticleMoveSpeed * Time.deltaTime), Space.World);
 
             var color = _particles[i].ParticleRenderer.material.color;

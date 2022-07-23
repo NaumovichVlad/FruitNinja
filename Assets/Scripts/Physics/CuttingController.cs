@@ -34,10 +34,11 @@ public class CuttingController : MonoBehaviour
                 Instance = halfInstance,
                 RotationSpeed = cutObject.RotationSpeed,
                 Direction = newDirection
-            }) ;
+            });
 
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
         }
+
         particlesController.CreateParticles(cutObject.Instance, particle);
         Destroy(cutObject.Instance);
     }

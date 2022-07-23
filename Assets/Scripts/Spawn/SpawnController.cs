@@ -26,17 +26,26 @@ public class SpawnController : MonoBehaviour
         Bottom
     }
 
+    private int _fruitCount;
+    private float _timeStep;
+
     [SerializeField] private Camera mainCamera;
     [SerializeField] private List<SpawnZone> spawnZones;
     [SerializeField] private GameObject fruitPrefab;
-    [SerializeField] private float timeStep;
-    [SerializeField] private int fruitCount;
     [SerializeField] private float minRotateSpeed;
     [SerializeField] private float maxRotateSpeed;
     [SerializeField] private float fruitSpeed;
+    [SerializeField] private float minTimeStep;
+    [SerializeField] private float maxTimeStep;
+    [SerializeField] private int minPackCount;
+    [SerializeField] private int maxPackCount;
+    [SerializeField] private int scoreForMinStep;
+    [SerializeField] private int scoreForMaxPack;
 
     void Start()
     {
+        _timeStep = maxTimeStep;
+        _fruitCount = minPackCount;
         Launch();
     }
 
@@ -49,9 +58,11 @@ public class SpawnController : MonoBehaviour
 
     IEnumerator SpawnFruits(float[] frequencies)
     {
-        yield return new WaitForSeconds(timeStep);
+        yield return new WaitForSeconds(_timeStep);
 
         var frequency = Random.value * frequencies[frequencies.Length - 1];
+
+        IncreaseSpawnSpeed();
 
         for (var i = 0; i < spawnZones.Count; i++)
         {
@@ -61,7 +72,7 @@ public class SpawnController : MonoBehaviour
                 var launchMinAngle = ConvertAngle(spawnZones[i].LaunchMinAngle, spawnPoint);
                 var launchMaxAngle = ConvertAngle(spawnZones[i].LaunchMaxAngle, spawnPoint);
 
-                for (var j = 0; j < fruitCount; j++)
+                for (var j = 0; j < Random.Range(minPackCount, _fruitCount + 1); j++)
                 {
                     var fruitState = new MoveController.MovingObject();
 
@@ -142,5 +153,21 @@ public class SpawnController : MonoBehaviour
         var angle = Random.value * (maxLaunchAngle - minLaunchAngle) + minLaunchAngle;
 
         return new Vector2(fruitSpeed * Mathf.Cos(Mathf.Deg2Rad * angle), fruitSpeed * Mathf.Sin(Mathf.Deg2Rad * angle));
+    }
+
+    private void IncreaseSpawnSpeed()
+    {
+        var score = ScoreCounterController.GetInstance().GetScore();
+
+        if (score <= scoreForMaxPack)
+        {
+            var scoreForIncrease = scoreForMaxPack / maxPackCount;
+            _fruitCount = System.Math.Max(score / scoreForIncrease, minPackCount);
+        }
+
+        if (score <= scoreForMinStep)
+        {
+            _timeStep = maxTimeStep - (float)score / scoreForMinStep * (maxTimeStep - minTimeStep);
+        }
     }
 }
