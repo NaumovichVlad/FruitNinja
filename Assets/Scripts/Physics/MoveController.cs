@@ -42,11 +42,11 @@ public class MoveController : MonoBehaviour
 
     private void MoveAndRotate(MovingObject movingObject)
     {
+        CheckMissing(movingObject.Instance);
+
         movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime, Space.World);
         movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime));
         movingObject.Direction += attractiveForce * Time.deltaTime;
-
-        CheckMissing(movingObject.Instance);
     }
 
     private bool CheckMissing(GameObject instance)
