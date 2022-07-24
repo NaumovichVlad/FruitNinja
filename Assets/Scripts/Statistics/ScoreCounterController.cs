@@ -59,7 +59,7 @@ public class ScoreCounterController : MonoBehaviour
 
             var comboLabel = Instantiate(comboTextController.gameObject, gameObject.transform.parent);
 
-            comboLabel.transform.position = mainCamera.WorldToScreenPoint(cuttedObject.transform.position);
+            comboLabel.transform.position = cuttedObject.transform.position;
         }
         else
         {

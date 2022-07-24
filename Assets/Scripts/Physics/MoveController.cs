@@ -42,19 +42,24 @@ public class MoveController : MonoBehaviour
 
     private void MoveAndRotate(MovingObject movingObject)
     {
-        CheckMissing(movingObject.Instance);
+        CheckMissing(movingObject.Instance, movingObject.IsHealth);
 
         movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime, Space.World);
         movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime));
         movingObject.Direction += attractiveForce * Time.deltaTime;
     }
 
-    private bool CheckMissing(GameObject instance)
+    private bool CheckMissing(GameObject instance, bool ishealth)
     {
         Vector3 point = Camera.main.WorldToViewportPoint(instance.transform.position);
 
         if (point.y < 0f || point.y > 1f || point.x > 1f || point.x < 0f)
         {
+            if (ishealth)
+            {
+                HealthController.GetInstance().RemoveHealth();
+            }
+
             Destroy(instance);
             return true;
         }
@@ -79,6 +84,8 @@ public class MoveController : MonoBehaviour
 
     public class MovingObject
     {
+        public bool IsHealth;
+
         public GameObject Instance;
 
         public Vector2 Direction;

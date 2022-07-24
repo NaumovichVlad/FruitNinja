@@ -85,6 +85,7 @@ public class SpawnController : MonoBehaviour
                     var fruitState = new MoveController.MovingObject();
 
                     fruitPrefab.transform.position = spawnPoint;
+                    fruitState.IsHealth = true;
                     fruitState.Direction = CalculateRandomDirection(launchMinAngle, launchMaxAngle);
                     fruitState.RotationSpeed = GetRandomRotateSpeed();
                     fruitState.Instance = Instantiate(fruitPrefab);
@@ -170,7 +171,7 @@ public class SpawnController : MonoBehaviour
         if (score <= scoreForMaxPack)
         {
             var scoreForIncrease = scoreForMaxPack / (maxPackCount - startPackCount);
-            _fruitCount =startPackCount + score / scoreForIncrease;
+            _fruitCount = startPackCount + score / scoreForIncrease;
         }
 
         if (score <= scoreForMinStep)

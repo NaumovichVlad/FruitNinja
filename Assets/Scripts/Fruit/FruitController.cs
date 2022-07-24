@@ -72,11 +72,6 @@ public class FruitController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(!isCut)
-        {
-            HealthController.GetInstance().RemoveHealth();
-        }
-
         SwipeDetection.SwipeEvent -= OnSwipe;
     }
 }
