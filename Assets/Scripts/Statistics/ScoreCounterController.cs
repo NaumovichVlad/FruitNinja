@@ -15,6 +15,7 @@ public class ScoreCounterController : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private ComboTextController comboTextController;
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private string bestScoreKey;
     [SerializeField] private int maxCombo;
     [SerializeField] private float maxTimeForCombo;
@@ -22,8 +23,15 @@ public class ScoreCounterController : MonoBehaviour
     void Awake()
     {
         instance = this;
-
+        LosePopUpController.RestartEvent += OnRestart;
         InitializeBestScore();
+    }
+
+    private void OnRestart()
+    {
+        InitializeBestScore();
+        _score = 0;
+        scoreText.text = _score.ToString();
     }
 
     public static ScoreCounterController GetInstance()
@@ -51,7 +59,7 @@ public class ScoreCounterController : MonoBehaviour
 
             var comboLabel = Instantiate(comboTextController.gameObject, gameObject.transform.parent);
 
-            comboLabel.transform.position = cuttedObject.transform.position;
+            comboLabel.transform.position = mainCamera.WorldToScreenPoint(cuttedObject.transform.position);
         }
         else
         {
@@ -87,7 +95,7 @@ public class ScoreCounterController : MonoBehaviour
         bestScoreText.text = string.Format("Best: {0}", _bestScore);
     }
 
-    private void OnDestroy()
+    public void SaveProgress()
     {
         PlayerPrefs.SetInt(bestScoreKey, _bestScore);
     }

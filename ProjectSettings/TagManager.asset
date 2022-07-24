@@ -56,3 +56,6 @@ TagManager:
   - name: LabelsLayer
     uniqueID: 3635191765
     locked: 0
+  - name: UILayer
+    uniqueID: 3261991957
+    locked: 0

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+
     private static HealthController instance;
     private readonly Stack<GameObject> _healthes = new Stack<GameObject> ();
     private readonly List<GameObject> _removedHealth = new List<GameObject> ();
 
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject healthPrefab;
     [SerializeField] private int startHealthCount;
     [SerializeField] private float scaleSpeed;
+    [SerializeField] private LosePopUpController popUpController;
 
     private void Awake()
     {
+        LosePopUpController.RestartEvent += InitializeHealth;
         instance = this;
         InitializeHealth();
     }
@@ -40,15 +42,13 @@ public class HealthController : MonoBehaviour
     {
         if (_healthes.Count > 0)
         {
-            _removedHealth.Add(_healthes.Pop());
-        }
-        else
-        {
-            Application.Quit();
+            if (_healthes.Count == 1)
+            {
+                Instantiate(popUpController.gameObject);
+                ScoreCounterController.GetInstance().SaveProgress();
+            }
 
-#if DEBUG
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            _removedHealth.Add(_healthes.Pop());
         }
     }
 

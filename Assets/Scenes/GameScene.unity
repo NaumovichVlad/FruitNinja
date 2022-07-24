@@ -392,9 +392,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 800, y: 480}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -409,10 +409,10 @@ Canvas:
   m_GameObject: {fileID: 570477162}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1074,6 +1074,7 @@ MonoBehaviour:
   scoreText: {fileID: 1630413083}
   bestScoreText: {fileID: 1206611635}
   comboTextController: {fileID: -9158803014966056334, guid: 174c7e588b1923248bc7902b12aa62de, type: 3}
+  mainCamera: {fileID: 519420031}
   bestScoreKey: player_bs
   maxCombo: 5
   maxTimeForCombo: 0.5
@@ -1177,7 +1178,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -54.31006, y: -51.179993}
-  m_SizeDelta: {x: 108.62, y: 102.36}
+  m_SizeDelta: {x: 108.619995, y: 102.359985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1969307314
 MonoBehaviour:
@@ -1191,7 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c7f080900d71642a0113129cc41f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
   healthPrefab: {fileID: 156453702542532655, guid: 4779dbf8b0eaaad4ab9e1db3c4a47106, type: 3}
   startHealthCount: 3
   scaleSpeed: 75
+  popUpController: {fileID: -7709352423447235949, guid: 578ec3792f0d7314b88e817cefc06174, type: 3}

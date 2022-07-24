@@ -28,6 +28,7 @@ public class SpawnController : MonoBehaviour
 
     private int _fruitCount;
     private float _timeStep;
+    private Coroutine _spawnCoroutine;
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private List<SpawnZone> spawnZones;
@@ -44,16 +45,23 @@ public class SpawnController : MonoBehaviour
 
     void Start()
     {
+        LosePopUpController.LoseEvent += OnLose;
+        LosePopUpController.RestartEvent += Launch;
         _timeStep = maxTimeStep;
         _fruitCount = startPackCount;
         Launch();
+    }
+
+    private void OnLose()
+    {
+        StopCoroutine(_spawnCoroutine);
     }
 
     void Launch()
     {
         var frequencies = CalculateFrequency();
 
-        StartCoroutine(SpawnFruits(frequencies));
+        _spawnCoroutine = StartCoroutine(SpawnFruits(frequencies));
     }
 
     IEnumerator SpawnFruits(float[] frequencies)

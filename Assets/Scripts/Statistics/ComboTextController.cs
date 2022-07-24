@@ -15,11 +15,6 @@ public class ComboTextController : MonoBehaviour
         comboText.text = _pattern + combo;
     }
 
-    private void Awake()
-    {
-        
-    }
-
     private void Update()
     {
         var color = comboText.color;
