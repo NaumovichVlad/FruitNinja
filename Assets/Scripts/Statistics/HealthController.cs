@@ -14,6 +14,9 @@ public class HealthController : MonoBehaviour
     [SerializeField] private GameObject healthPrefab;
     [SerializeField] private int startHealthCount;
     [SerializeField] private float scaleSpeed;
+    [SerializeField] private float startScale;
+    [SerializeField] private float animationScale;
+    [SerializeField] private float animationSpeed;
     [SerializeField] private LosePopUpController popUpController;
 
     private void Awake()
@@ -32,6 +35,8 @@ public class HealthController : MonoBehaviour
     {
         for (var i = 0; i < startHealthCount; i++)
         {
+            healthPrefab.transform.localScale = new Vector3(startScale, startScale, startScale);
+
             var health = Instantiate(healthPrefab, gameObject.transform);
 
             health.transform.Translate(new Vector2 (-i * health.transform.lossyScale.x, 0));
@@ -46,6 +51,7 @@ public class HealthController : MonoBehaviour
         {
             if (_healthes.Count == 1)
             {
+                LoseEvent();
                 Instantiate(popUpController.gameObject);
                 ScoreCounterController.GetInstance().SaveProgress();
             }
@@ -68,6 +74,24 @@ public class HealthController : MonoBehaviour
                 Destroy(_removedHealth[j]);
                 _removedHealth.RemoveAt(j--);
             }
+        }
+
+        foreach (var health in _healthes)
+        {
+            Animate(health);
+        }
+    }
+
+    private void Animate(GameObject health)
+    {
+        var anim = animationSpeed * Time.deltaTime;
+        if (health.transform.localScale.x > startScale - animationScale)
+        {
+            health.transform.localScale -= new Vector3(anim, anim, anim);
+        }
+        else
+        {
+            health.transform.localScale = new Vector3(startScale, startScale, startScale);
         }
     }
 }
