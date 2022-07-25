@@ -7,6 +7,7 @@ public class ParticlesController : MonoBehaviour
     private readonly List<TransparentedParticles> _particles = new List<TransparentedParticles>();
 
     [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private SpriteRenderer juiceDropSprite;
     [SerializeField] private string sortingLayerName;
     [SerializeField] private int minParticlesCount;
     [SerializeField] private int maxParticlesCount;
@@ -19,6 +20,11 @@ public class ParticlesController : MonoBehaviour
     [SerializeField] private float minParticleScatterRadius;
     [SerializeField] private float maxParticleScatterRadius;
     [SerializeField] private float maxRotationAngle;
+    [SerializeField] private float maxJuiceDropSize;
+    [SerializeField] private float minJuiceDropSize;
+    [SerializeField] private float juiceDropSpeed;
+    [SerializeField] private int juiceDropCount;
+
 
     private class TransparentedParticles
     {
@@ -30,14 +36,14 @@ public class ParticlesController : MonoBehaviour
 
         public SpriteRenderer ParticleRenderer;
     }
-    public void CreateParticles(GameObject cuttedObject, Sprite particleSprite)
+    public void CreateParticles(GameObject cuttedObject, Sprite particleSprite, Color juiceColor)
     {
         var particleCount = Random.Range(minParticlesCount, maxParticlesCount + 1);
 
         for (var i = 0; i < particleCount; i++)
         {
             particlePrefab.transform.position = CalculateRandomPosition(cuttedObject.transform.position);
-            particlePrefab.transform.localScale = CalculateRandomScale();
+            particlePrefab.transform.localScale = CalculateRandomScale(minParticleScale, maxParticleScale);
 
             var particle = new TransparentedParticles()
             {
@@ -54,6 +60,27 @@ public class ParticlesController : MonoBehaviour
             _particles.Add(particle);
         }
 
+        CreateDrops(cuttedObject, juiceColor);
+    }
+
+    private void CreateDrops(GameObject cuttedObject, Color juiceColor)
+    {
+        for (var i = 0; i < juiceDropCount; i++)
+        {
+
+            juiceDropSprite.color = juiceColor;
+            var drop = Instantiate(juiceDropSprite.gameObject);
+            drop.transform.position = cuttedObject.transform.position;
+            drop.transform.localScale = CalculateRandomScale(minJuiceDropSize, maxJuiceDropSize);
+            var angle = Random.value * 360;
+
+            MoveController.GetInstance().AddMovingObject(new MoveController.MovingObject()
+            {
+                Instance = drop,
+                Direction = new Vector2(juiceDropSpeed * Mathf.Cos(Mathf.Deg2Rad * angle), juiceDropSpeed * Mathf.Sin(Mathf.Deg2Rad * angle)),
+                RotationSpeed = 0
+            }) ;
+        }
     }
 
     private Vector2 CalculateRandomPosition(Vector2 cutPossition)
@@ -67,9 +94,9 @@ public class ParticlesController : MonoBehaviour
         return randomPosition;
     }
 
-    private Vector3 CalculateRandomScale()
+    private Vector3 CalculateRandomScale(float min, float max)
     {
-        var randomScale = Random.Range(minParticleScale, maxParticleScale);
+        var randomScale = Random.Range(min, max);
 
         return new Vector3(randomScale, randomScale, randomScale);
     }

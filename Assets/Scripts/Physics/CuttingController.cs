@@ -12,7 +12,7 @@ public class CuttingController : MonoBehaviour
         FruitController.CutEvent += OnCut;
     }
 
-    private void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, Sprite particle, Vector2 cutDirection, float cutSpeed)
+    private void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, Sprite particle, Color juiceColor, Vector2 cutDirection, float cutSpeed)
     {
         int side = -1;
 
@@ -39,7 +39,7 @@ public class CuttingController : MonoBehaviour
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
         }
 
-        particlesController.CreateParticles(cutObject.Instance, particle);
+        particlesController.CreateParticles(cutObject.Instance, particle, juiceColor);
         Destroy(cutObject.Instance);
     }
 

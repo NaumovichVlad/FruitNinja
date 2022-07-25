@@ -12,6 +12,8 @@ public class FruitController : MonoBehaviour
         public Sprite SecondHalf;
 
         public Sprite Particle;
+
+        public Color JuiceColor;
     }
 
     private FruitSprites _fruit;
@@ -21,7 +23,8 @@ public class FruitController : MonoBehaviour
     [SerializeField] private FruitHalfController fruitHalfCreator;
 
     public static event OnCut CutEvent;
-    public delegate void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, Sprite particle, Vector2 cutDirection, float cutSpeed);
+    public delegate void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, 
+        Sprite particle, Color juiceColor, Vector2 cutDirection, float cutSpeed);
 
     private void InitializeFruit()
     {
@@ -57,7 +60,7 @@ public class FruitController : MonoBehaviour
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
 
-            CutEvent(states, halfs, _fruit.Particle, direction, swipeSpeed);
+            CutEvent(states, halfs, _fruit.Particle, _fruit.JuiceColor, direction, swipeSpeed);
             ScoreCounterController.GetInstance().AddScore(gameObject);
         }
     }

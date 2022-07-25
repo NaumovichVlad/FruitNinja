@@ -657,6 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 7481415094035734305, guid: df42ad07ea9446b4291fb95da6b2b783, type: 3}
+  juiceDropSprite: {fileID: 4683469247305382723, guid: 59ebc3ba8833cbc4a8919d6cc7d305af, type: 3}
   sortingLayerName: ParticlesLayer
   minParticlesCount: 2
   maxParticlesCount: 6
@@ -669,6 +670,10 @@ MonoBehaviour:
   minParticleScatterRadius: 1
   maxParticleScatterRadius: 3
   maxRotationAngle: 360
+  maxJuiceDropSize: 0.2
+  minJuiceDropSize: 0.4
+  juiceDropSpeed: 15
+  juiceDropCount: 5
 --- !u!1 &1084448355
 GameObject:
   m_ObjectHideFlags: 0
