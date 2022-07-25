@@ -16,6 +16,7 @@ public class ScoreCounterController : MonoBehaviour
     [SerializeField] private Text bestScoreText;
     [SerializeField] private ComboTextController comboTextController;
     [SerializeField] private string bestScoreKey;
+    [SerializeField] private int pointForFruit;
     [SerializeField] private int maxCombo;
     [SerializeField] private float maxTimeForCombo;
 
@@ -54,7 +55,7 @@ public class ScoreCounterController : MonoBehaviour
                 _combo++;
             }
 
-            comboTextController.SetCombo(_combo);
+            comboTextController.SetCombo(_combo * pointForFruit);
 
             var comboLabel = Instantiate(comboTextController.gameObject, gameObject.transform.parent);
 
@@ -65,7 +66,7 @@ public class ScoreCounterController : MonoBehaviour
             _combo = 1;
         }
 
-        _score += _combo;
+        _score += pointForFruit * _combo;
         scoreText.text = _score.ToString();
         _lastCutTime = time;
 

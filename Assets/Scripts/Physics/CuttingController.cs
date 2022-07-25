@@ -26,8 +26,8 @@ public class CuttingController : MonoBehaviour
                 side *= -1;
             }
 
-            newDirection.x = cutObject.Direction.x * Mathf.Cos(Mathf.Deg2Rad * halfsScatterAngle);
-            newDirection.y = cutObject.Direction.y * Mathf.Sin(Mathf.Deg2Rad * halfsScatterAngle * side);
+            newDirection.x = (cutObject.Direction.x + Mathf.Cos(Mathf.Deg2Rad * halfsScatterAngle) * side);
+            newDirection.y = cutObject.Direction.y + cutSpeed * side;
 
             MoveController.GetInstance().AddMovingObject(new MoveController.MovingObject()
             {

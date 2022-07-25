@@ -232,18 +232,18 @@ MonoBehaviour:
   - SizeInPercent: 99
     Side: 2
     LaunchMaxAngle: 89
-    LaunchMinAngle: 60
+    LaunchMinAngle: 55
     Frequency: 10
   fruitPrefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
   minRotateSpeed: 100
   maxRotateSpeed: 200
-  fruitSpeed: 18
+  fruitSpeed: 16
   minTimeStep: 0.5
   maxTimeStep: 1.5
   startPackCount: 2
   maxPackCount: 5
-  scoreForMinStep: 200
-  scoreForMaxPack: 200
+  scoreForMinStep: 1000
+  scoreForMaxPack: 1000
 --- !u!4 &317747653
 Transform:
   m_ObjectHideFlags: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boost: 1
   particlesController: {fileID: 649516426}
-  halfsScatterAngle: 15
+  halfsScatterAngle: 60
 --- !u!114 &649516426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,6 +1221,7 @@ MonoBehaviour:
   bestScoreText: {fileID: 1206611635}
   comboTextController: {fileID: -9158803014966056334, guid: 174c7e588b1923248bc7902b12aa62de, type: 3}
   bestScoreKey: player_bs
+  pointForFruit: 10
   maxCombo: 5
   maxTimeForCombo: 0.5
 --- !u!114 &1630413086

@@ -8,11 +8,9 @@ public class ComboTextController : MonoBehaviour
     [SerializeField] private Text comboText;
     [SerializeField] private float transparencySpeed;
 
-    private const string _pattern = "X";
-
     public void SetCombo(int combo)
     {
-        comboText.text = _pattern + combo;
+        comboText.text = combo.ToString();
     }
 
     private void Update()
