@@ -15,6 +15,11 @@ public class MoveController : MonoBehaviour
         moveController = this;
     }
 
+    public int GetMovingObjectCount()
+    {
+        return _movingObjects.Count;
+    }
+
     public static MoveController GetInstance()
     {
         return moveController;

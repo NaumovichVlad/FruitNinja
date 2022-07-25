@@ -45,7 +45,7 @@ public class SpawnController : MonoBehaviour
 
     void Start()
     {
-        LosePopUpController.LoseEvent += OnLose;
+        HealthController.LoseEvent += OnLose;
         LosePopUpController.RestartEvent += Launch;
         _timeStep = maxTimeStep;
         _fruitCount = startPackCount;

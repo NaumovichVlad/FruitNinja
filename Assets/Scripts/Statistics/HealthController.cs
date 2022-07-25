@@ -9,6 +9,8 @@ public class HealthController : MonoBehaviour
     private readonly Stack<GameObject> _healthes = new Stack<GameObject> ();
     private readonly List<GameObject> _removedHealth = new List<GameObject> ();
 
+    public static event LosePopUpController.OnLose LoseEvent;
+
     [SerializeField] private GameObject healthPrefab;
     [SerializeField] private int startHealthCount;
     [SerializeField] private float scaleSpeed;

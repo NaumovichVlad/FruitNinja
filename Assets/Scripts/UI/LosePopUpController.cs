@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class LosePopUpController : MonoBehaviour
 {
-    public static event OnLose LoseEvent;
     public static event OnLose RestartEvent;
     public delegate void OnLose();
 
@@ -24,7 +23,6 @@ public class LosePopUpController : MonoBehaviour
     {
         _score = ScoreCounterController.GetInstance().GetScore();
         loseScoreText.text += _score;
-        LoseEvent();
 
         restartButton.onClick.AddListener(RestartButtonClick);
         mainMenuButton.onClick.AddListener(MainMenuButtonClick);
