@@ -15,7 +15,6 @@ public class ScoreCounterController : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private ComboTextController comboTextController;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private string bestScoreKey;
     [SerializeField] private int maxCombo;
     [SerializeField] private float maxTimeForCombo;
@@ -92,7 +91,7 @@ public class ScoreCounterController : MonoBehaviour
 
     private void SetBestScoreText()
     {
-        bestScoreText.text = string.Format("Best: {0}", _bestScore);
+        bestScoreText.text = string.Format("Лучший: {0}", _bestScore);
     }
 
     public void SaveProgress()

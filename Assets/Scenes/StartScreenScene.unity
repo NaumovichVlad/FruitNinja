@@ -706,9 +706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0261ab22bc32c2249bde20d67855f6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  exitButton: {fileID: 0}
-  bestScoreLabel: {fileID: 0}
+  startButton: {fileID: 1837352850}
+  exitButton: {fileID: 2075811349}
+  bestScoreLabel: {fileID: 1400627968}
   nextSceneName: GameScene
   bestScoreKey: player_bs
 --- !u!1 &900007245
@@ -1233,7 +1233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!222 &1400627969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 0.84869957, b: 0.07843137, a: 1}
-    m_HighlightedColor: {r: 0.9622642, g: 0.0671769, b: 0.0671769, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.9499433, b: 0.27735847, a: 1}
     m_PressedColor: {r: 0.9607844, g: 0.7725491, b: 0.003921569, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
