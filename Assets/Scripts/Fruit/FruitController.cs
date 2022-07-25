@@ -15,7 +15,6 @@ public class FruitController : MonoBehaviour
     }
 
     private FruitSprites _fruit;
-    private bool isCut;
     private readonly List<GameObject> halfs = new List<GameObject>();
 
     [SerializeField] private List<FruitSprites> fruitSprites;
@@ -57,8 +56,6 @@ public class FruitController : MonoBehaviour
         if (CalculateLength((Vector2)gameObject.transform.position, swipePosition) < gameObject.transform.localScale.x)
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
-
-            isCut = true;
 
             CutEvent(states, halfs, _fruit.Particle, direction, swipeSpeed);
             ScoreCounterController.GetInstance().AddScore(gameObject);

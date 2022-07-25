@@ -361,6 +361,7 @@ MonoBehaviour:
   background: {fileID: 5881572291789957353}
   maxBackgroundTransparency: 0.5
   transparencySpeed: 1
+  mainSceneName: StartScreenScene
 --- !u!222 &1971035079315778555
 CanvasRenderer:
   m_ObjectHideFlags: 0

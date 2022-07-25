@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LosePopUpController : MonoBehaviour
@@ -17,6 +18,7 @@ public class LosePopUpController : MonoBehaviour
     [SerializeField] private Image background;
     [SerializeField] private float maxBackgroundTransparency;
     [SerializeField] private float transparencySpeed;
+    [SerializeField] private string mainSceneName;
 
     void Start()
     {
@@ -51,9 +53,6 @@ public class LosePopUpController : MonoBehaviour
 
     private void MainMenuButtonClick()
     {
-        Application.Quit();
-#if DEBUG
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        SceneManager.LoadScene(mainSceneName);
     }
 }
