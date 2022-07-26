@@ -13,6 +13,24 @@ public class MoveController : MonoBehaviour
     private void Awake()
     {
         moveController = this;
+        BombController.ExplosionEvent += OnExplode;
+    }
+
+    private void OnExplode(Vector2 explosionPosition, float explosionPower)
+    {
+        for (var i =0; i < _movingObjects.Count; i++)
+        {
+            var length = CalculateLength(explosionPosition, _movingObjects[i].Instance.transform.position);
+
+            if (length < explosionPower)
+            {
+                var y = _movingObjects[i].Direction.y - explosionPosition.y;
+                var x = _movingObjects[i].Direction.x - explosionPosition.x;
+
+                _movingObjects[i].Direction.x += x;
+                _movingObjects[i].Direction.y += y;
+            }
+        }
     }
 
     public int GetMovingObjectCount()
@@ -85,6 +103,11 @@ public class MoveController : MonoBehaviour
             }
 
         }
+    }
+
+    private float CalculateLength(Vector2 firstVector, Vector2 secondVector)
+    {
+        return Mathf.Sqrt(Mathf.Pow(firstVector.x - secondVector.x, 2) + Mathf.Pow(firstVector.y - secondVector.y, 2));
     }
 
     public class MovingObject

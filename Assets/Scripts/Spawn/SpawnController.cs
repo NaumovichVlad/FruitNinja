@@ -19,6 +19,14 @@ public class SpawnController : MonoBehaviour
         public float Frequency;
     }
 
+    [System.Serializable]
+    private class SpawnObject
+    {
+        public GameObject Prefab;
+
+        public float SpawnFrequency;
+    }
+
     private enum Sides
     {
         Left,
@@ -32,7 +40,7 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private List<SpawnZone> spawnZones;
-    [SerializeField] private GameObject fruitPrefab;
+    [SerializeField] private List<SpawnObject> spawnPrefabs;
     [SerializeField] private float minRotateSpeed;
     [SerializeField] private float maxRotateSpeed;
     [SerializeField] private float fruitSpeed;
@@ -83,12 +91,13 @@ public class SpawnController : MonoBehaviour
                 for (var j = 0; j < Random.Range(1, _fruitCount + 1); j++)
                 {
                     var fruitState = new MoveController.MovingObject();
+                    var prefab = GetSpawnObject();
 
-                    fruitPrefab.transform.position = spawnPoint;
+                    prefab.transform.position = spawnPoint;
                     fruitState.IsHealth = true;
                     fruitState.Direction = CalculateRandomDirection(launchMinAngle, launchMaxAngle);
                     fruitState.RotationSpeed = GetRandomRotateSpeed();
-                    fruitState.Instance = Instantiate(fruitPrefab);
+                    fruitState.Instance = Instantiate(prefab);
 
                     MoveController.GetInstance().AddMovingObject(fruitState);
                 }
@@ -98,6 +107,25 @@ public class SpawnController : MonoBehaviour
         }
         Launch();
     }
+
+    private GameObject GetSpawnObject()
+    {
+        var randomValue = Random.value;
+        var frequency = 0f;
+
+        foreach (var spawnObject in spawnPrefabs)
+        {
+            frequency += spawnObject.SpawnFrequency;
+
+            if (randomValue < frequency)
+            {
+                return spawnObject.Prefab;
+            }
+        }
+
+        return spawnPrefabs[0].Prefab;
+    }
+
     private Vector2 CreateRandomSpawnInZone(float size, Sides side)
     {
         var spawnPosition = new Vector2();

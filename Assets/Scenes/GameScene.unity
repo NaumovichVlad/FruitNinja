@@ -234,7 +234,11 @@ MonoBehaviour:
     LaunchMaxAngle: 89
     LaunchMinAngle: 55
     Frequency: 10
-  fruitPrefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
+  spawnPrefabs:
+  - Prefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
+    SpawnFrequency: 0.7
+  - Prefab: {fileID: 2398194152217865365, guid: 144aba5eb16e43645b7f0a0d8c32f11c, type: 3}
+    SpawnFrequency: 0.3
   minRotateSpeed: 100
   maxRotateSpeed: 200
   fruitSpeed: 16

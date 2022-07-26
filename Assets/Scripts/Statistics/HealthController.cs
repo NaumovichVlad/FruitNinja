@@ -22,8 +22,15 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         LosePopUpController.RestartEvent += InitializeHealth;
+        BombController.ExplosionEvent += OnExplode;
+
         instance = this;
         InitializeHealth();
+    }
+
+    private void OnExplode(Vector2 explosionPosition, float explosionPower)
+    {
+        RemoveHealth();
     }
 
     public static HealthController GetInstance()
