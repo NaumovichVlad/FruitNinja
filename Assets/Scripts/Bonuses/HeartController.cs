@@ -5,7 +5,6 @@ using UnityEngine;
 public class HeartController : MonoBehaviour
 {
     [SerializeField] private FruitHalfController fruitHalfController;
-    [SerializeField] private SpriteRenderer heartRenderer;
     [SerializeField] private List<Sprite> partSprites;
     [SerializeField] private float healthSpeed;
 

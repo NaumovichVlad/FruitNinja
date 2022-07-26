@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6493221467804894378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8736165, y: -5, z: 0}
+  m_LocalPosition: {x: 4.4715004, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitHalfController: {fileID: -2289398569987863385, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
-  heartRenderer: {fileID: 1752259924425067298}
   partSprites:
   - {fileID: -205270267638800340, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}
   - {fileID: 7904136456745960365, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}

@@ -89,30 +89,12 @@ public class HealthController : MonoBehaviour
 
     private Vector2 GetNextPosition()
     {
-        if (_healthes.Count > 0)
-        {
-            if (_healthes.Count % _healthesInRow != 0)
-            {
-                var nextPosition = new Vector2();
-                nextPosition.x = gameObject.transform.position.x - startScale * (_healthes.Count % _healthesInRow);
-                nextPosition.y = gameObject.transform.position.y;
+        var nextPosition = new Vector2();
 
-                return nextPosition;
-            }
-            else
-            {
-                var nextPosition = new Vector2();
+        nextPosition.x = gameObject.transform.position.x - startScale * (_healthes.Count % _healthesInRow);
+        nextPosition.y = gameObject.transform.position.y - startScale * (_healthes.Count / _healthesInRow);
 
-                nextPosition.x = gameObject.transform.position.x;
-                nextPosition.y = gameObject.transform.position.y - startScale * _healthes.Count / _healthesInRow;
-
-                return nextPosition;
-            }
-        }
-        else
-        {
-            return gameObject.transform.position;
-        }
+        return nextPosition;
     }
 
     private void Update()

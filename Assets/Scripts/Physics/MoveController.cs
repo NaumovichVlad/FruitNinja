@@ -7,6 +7,11 @@ public class MoveController : MonoBehaviour
     private readonly List<MovingObject> _movingObjects = new List<MovingObject>();
     private static MoveController moveController;
 
+    private int _freezingTime;
+    private float _freezingPower;
+    private int _freezingTimer;
+    private bool _isFreezed;
+
 
     [SerializeField] private Vector2 attractiveForce;
 
@@ -63,13 +68,26 @@ public class MoveController : MonoBehaviour
         return null;
     }
 
+    public void AddFreezing(int freezingTime, float freezingPower)
+    {
+        _freezingPower = freezingPower;
+        _freezingTime = freezingTime;
+        _isFreezed = true;
+    }
+
     private void MoveAndRotate(MovingObject movingObject)
     {
         CheckMissing(movingObject.Instance, movingObject.IsHealth);
+        var booster = 1f;
 
-        movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime, Space.World);
-        movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime));
-        movingObject.Direction += attractiveForce * Time.deltaTime;
+        if (_isFreezed)
+        {
+            booster = _freezingPower;
+        }
+
+        movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime / booster, Space.World);
+        movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime / booster));
+        movingObject.Direction += attractiveForce / booster * Time.deltaTime;
     }
 
     private bool CheckMissing(GameObject instance, bool ishealth)
@@ -91,6 +109,16 @@ public class MoveController : MonoBehaviour
 
     private void Update()
     {
+        if (_isFreezed)
+        {
+            if (_freezingTimer++ > _freezingTime)
+            {
+                _isFreezed = false;
+                _freezingTimer = 0;
+                _freezingTime = 0;
+            }
+        }
+
         for (var i = 0; i < _movingObjects.Count; i++)
         {
             if (_movingObjects[i].Instance == null)
