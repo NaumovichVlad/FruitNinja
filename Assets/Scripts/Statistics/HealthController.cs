@@ -6,8 +6,10 @@ public class HealthController : MonoBehaviour
 {
 
     private static HealthController instance;
+    private int _healthesInRow;
     private readonly Stack<GameObject> _healthes = new Stack<GameObject> ();
     private readonly List<GameObject> _removedHealth = new List<GameObject> ();
+    private readonly List<MovedHealth> _movedHealth = new List<MovedHealth>();
 
     public static event LosePopUpController.OnLose LoseEvent;
 
@@ -21,6 +23,7 @@ public class HealthController : MonoBehaviour
 
     private void Awake()
     {
+        _healthesInRow = (int)(Screen.width / 2 / startScale);
         LosePopUpController.RestartEvent += InitializeHealth;
         BombController.ExplosionEvent += OnExplode;
 
@@ -43,10 +46,9 @@ public class HealthController : MonoBehaviour
         for (var i = 0; i < startHealthCount; i++)
         {
             healthPrefab.transform.localScale = new Vector3(startScale, startScale, startScale);
+            healthPrefab.transform.position = GetNextPosition();
 
             var health = Instantiate(healthPrefab, gameObject.transform);
-
-            health.transform.Translate(new Vector2 (-i * health.transform.lossyScale.x, 0));
 
             _healthes.Push(health);
         }
@@ -64,6 +66,52 @@ public class HealthController : MonoBehaviour
             }
 
             _removedHealth.Add(_healthes.Pop());
+        }
+    }
+
+    public void AddHealth(Vector2 position, float speed)
+    {
+        healthPrefab.transform.position = position;
+
+        var health = Instantiate(healthPrefab, gameObject.transform, true);
+        health.transform.localScale = new Vector3(startScale, startScale, startScale);
+
+        var endPosition = gameObject.transform.position;
+
+        _movedHealth.Add(new MovedHealth()
+        {
+            Health = health,
+            XSpeed = (endPosition.x - position.x) * speed,
+            YSpeed = (endPosition.y - position.y) * speed,
+            
+        });
+    }
+
+    private Vector2 GetNextPosition()
+    {
+        if (_healthes.Count > 0)
+        {
+            if (_healthes.Count % _healthesInRow != 0)
+            {
+                var nextPosition = new Vector2();
+                nextPosition.x = gameObject.transform.position.x - startScale * (_healthes.Count % _healthesInRow);
+                nextPosition.y = gameObject.transform.position.y;
+
+                return nextPosition;
+            }
+            else
+            {
+                var nextPosition = new Vector2();
+
+                nextPosition.x = gameObject.transform.position.x;
+                nextPosition.y = gameObject.transform.position.y - startScale * _healthes.Count / _healthesInRow;
+
+                return nextPosition;
+            }
+        }
+        else
+        {
+            return gameObject.transform.position;
         }
     }
 
@@ -87,6 +135,21 @@ public class HealthController : MonoBehaviour
         {
             Animate(health);
         }
+
+        for (var i = 0; i < _movedHealth.Count; i++)
+        {
+            if (_movedHealth[i].Health.transform.position.x > gameObject.transform.position.x
+                || _movedHealth[i].Health.transform.position.y > gameObject.transform.position.y)
+            {
+                _movedHealth[i].Health.transform.localPosition = GetNextPosition();
+                _healthes.Push(_movedHealth[i].Health);
+                _movedHealth.RemoveAt(i--);
+            }
+            else
+            {
+                _movedHealth[i].Health.transform.Translate(new Vector2(_movedHealth[i].XSpeed, _movedHealth[i].YSpeed) * Time.deltaTime);
+            }
+        }
     }
 
     private void Animate(GameObject health)
@@ -100,5 +163,16 @@ public class HealthController : MonoBehaviour
         {
             health.transform.localScale = new Vector3(startScale, startScale, startScale);
         }
+    }
+
+    private class MovedHealth
+    {
+        public GameObject Health;
+
+        public float XSpeed;
+
+        public float YSpeed;
+
+        public Vector2 EndPosition;
     }
 }

@@ -25,6 +25,8 @@ public class SpawnController : MonoBehaviour
         public GameObject Prefab;
 
         public float SpawnFrequency;
+
+        public bool IsHealth;
     }
 
     private enum Sides
@@ -91,10 +93,11 @@ public class SpawnController : MonoBehaviour
                 for (var j = 0; j < Random.Range(1, _fruitCount + 1); j++)
                 {
                     var fruitState = new MoveController.MovingObject();
-                    var prefab = GetSpawnObject();
+                    var spawnObject = GetSpawnObject();
+                    var prefab = spawnObject.Prefab;
 
                     prefab.transform.position = spawnPoint;
-                    fruitState.IsHealth = true;
+                    fruitState.IsHealth = spawnObject.IsHealth;
                     fruitState.Direction = CalculateRandomDirection(launchMinAngle, launchMaxAngle);
                     fruitState.RotationSpeed = GetRandomRotateSpeed();
                     fruitState.Instance = Instantiate(prefab);
@@ -108,7 +111,7 @@ public class SpawnController : MonoBehaviour
         Launch();
     }
 
-    private GameObject GetSpawnObject()
+    private SpawnObject GetSpawnObject()
     {
         var randomValue = Random.value;
         var frequency = 0f;
@@ -119,11 +122,11 @@ public class SpawnController : MonoBehaviour
 
             if (randomValue < frequency)
             {
-                return spawnObject.Prefab;
+                return spawnObject;
             }
         }
 
-        return spawnPrefabs[0].Prefab;
+        return spawnPrefabs[0];
     }
 
     private Vector2 CreateRandomSpawnInZone(float size, Sides side)

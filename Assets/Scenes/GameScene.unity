@@ -236,9 +236,14 @@ MonoBehaviour:
     Frequency: 10
   spawnPrefabs:
   - Prefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
-    SpawnFrequency: 0.7
+    SpawnFrequency: 0.6
+    IsHealth: 1
   - Prefab: {fileID: 2398194152217865365, guid: 144aba5eb16e43645b7f0a0d8c32f11c, type: 3}
-    SpawnFrequency: 0.3
+    SpawnFrequency: 0.2
+    IsHealth: 0
+  - Prefab: {fileID: 6493221467804894378, guid: 570bc7ee65f2db748acb778cf6a07679, type: 3}
+    SpawnFrequency: 0.2
+    IsHealth: 0
   minRotateSpeed: 100
   maxRotateSpeed: 200
   fruitSpeed: 16
@@ -1308,6 +1313,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1866926478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866926480}
+  - component: {fileID: 1866926479}
+  m_Layer: 0
+  m_Name: Freezing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866926479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866926478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066752dc8e83e0a499d8099fbea32a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstHalf: {fileID: 0}
+--- !u!4 &1866926480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866926478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0778713, y: -0.8971901, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969307312
 GameObject:

@@ -7,12 +7,33 @@ public class CuttingController : MonoBehaviour
     [SerializeField] private float boost;
     [SerializeField] private ParticlesController particlesController;
     [SerializeField] private float halfsScatterAngle;
+
+    private static CuttingController cuttingController;
+
+    private void Awake()
+    {
+        cuttingController = this;
+    }
+
     void Start()
     {
         FruitController.CutEvent += OnCut;
     }
 
+    public static CuttingController GetInstance()
+    {
+        return cuttingController;
+    }
+
     private void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, Sprite particle, Color juiceColor, Vector2 cutDirection, float cutSpeed)
+    {
+        Cut(cutObject, halfs, cutSpeed);
+
+        particlesController.CreateParticles(cutObject.Instance, particle, juiceColor);
+        Destroy(cutObject.Instance);
+    }
+
+    public void Cut(MoveController.MovingObject cutObject, List<GameObject> halfs, float cutSpeed)
     {
         int side = -1;
 
@@ -38,10 +59,5 @@ public class CuttingController : MonoBehaviour
 
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
         }
-
-        particlesController.CreateParticles(cutObject.Instance, particle, juiceColor);
-        Destroy(cutObject.Instance);
     }
-
-    
 }
