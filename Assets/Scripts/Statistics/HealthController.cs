@@ -61,12 +61,21 @@ public class HealthController : MonoBehaviour
             if (_healthes.Count == 1)
             {
                 LoseEvent();
-                Instantiate(popUpController.gameObject);
-                ScoreCounterController.GetInstance().SaveProgress();
+
+                StartCoroutine(WaitLose());
             }
 
             _removedHealth.Add(_healthes.Pop());
         }
+    }
+
+    IEnumerator WaitLose()
+    {
+        yield return new WaitWhile(() =>
+            MoveController.GetInstance().GetMovingObjectCount() > 0);
+
+        Instantiate(popUpController.gameObject);
+        ScoreCounterController.GetInstance().SaveProgress();
     }
 
     public void AddHealth(Vector2 position, float speed)
