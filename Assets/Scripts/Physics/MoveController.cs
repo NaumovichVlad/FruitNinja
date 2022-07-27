@@ -5,12 +5,28 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     private readonly List<MovingObject> _movingObjects = new List<MovingObject>();
+    private readonly List<Magnetizm> _magnetizms = new List<Magnetizm>();
     private static MoveController moveController;
 
     private int _freezingTime;
     private float _freezingPower;
     private int _freezingTimer;
     private bool _isFreezed;
+
+    private class Magnetizm
+    {
+        public float MagnetTime;
+
+        public float MagnetPower;
+
+        public float MagnetTimer;
+
+        public float MagnetRadius;
+
+        public Vector2 MagnetPosition;
+    }
+
+    
 
 
     [SerializeField] private Vector2 attractiveForce;
@@ -75,17 +91,49 @@ public class MoveController : MonoBehaviour
         _isFreezed = true;
     }
 
+    public void AddMagnetization(Vector2 magnetPosition, int magnetizationTime, float magnetizationPower, float magnetizationRadius)
+    {
+        _magnetizms.Add(new Magnetizm()
+        {
+            MagnetPower = magnetizationPower,
+            MagnetTime = magnetizationTime,
+            MagnetPosition = magnetPosition,
+            MagnetRadius = magnetizationRadius,
+        });
+    }
+
     private void MoveAndRotate(MovingObject movingObject)
     {
         CheckMissing(movingObject.Instance, movingObject.IsHealth);
+
         var booster = 1f;
+        var magnetVector = Vector2.zero;
 
         if (_isFreezed)
         {
             booster = _freezingPower;
         }
 
-        movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime / booster, Space.World);
+        if (_magnetizms.Count > 0)
+        {
+            for (var i = 0; i < _magnetizms.Count; i++)
+            {
+                magnetVector += 
+                    CalculateMagnitizationVector(_magnetizms[i].MagnetPosition, movingObject, _magnetizms[i].MagnetPower, _magnetizms[i].MagnetRadius);
+
+                _magnetizms[i].MagnetTimer += Time.fixedDeltaTime;
+
+                if (_magnetizms[i].MagnetTimer > _magnetizms[i].MagnetTime)
+                {
+                    movingObject.Direction += 
+                        CalculateMagnitizationVector(_magnetizms[i].MagnetPosition, movingObject, _magnetizms[i].MagnetPower, _magnetizms[i].MagnetRadius);
+                    _magnetizms.RemoveAt(i--);
+                }
+            }
+        }
+
+        
+        movingObject.Instance.transform.Translate((movingObject.Direction + magnetVector) * Time.deltaTime / booster, Space.World);
         movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime / booster));
         movingObject.Direction += attractiveForce / booster * Time.deltaTime;
     }
@@ -119,6 +167,7 @@ public class MoveController : MonoBehaviour
             }
         }
 
+
         for (var i = 0; i < _movingObjects.Count; i++)
         {
             if (_movingObjects[i].Instance == null)
@@ -129,13 +178,35 @@ public class MoveController : MonoBehaviour
             {
                 MoveAndRotate(_movingObjects[i]);
             }
-
         }
     }
 
     private float CalculateLength(Vector2 firstVector, Vector2 secondVector)
     {
         return Mathf.Sqrt(Mathf.Pow(firstVector.x - secondVector.x, 2) + Mathf.Pow(firstVector.y - secondVector.y, 2));
+    }
+
+    private Vector2 CalculateMagnitizationVector(Vector2 magnetPosition, MovingObject instance, float magnetPower, float magnetRadius)
+    {
+        var distance = CalculateLength(magnetPosition, instance.Instance.transform.position);
+
+        if (distance < magnetRadius)
+        {
+            var magnetVector = new Vector2();
+
+            distance = distance < 1 ? 1 : distance;
+
+            magnetPower /= distance;
+
+            magnetVector.x = (magnetPosition.x - instance.Instance.transform.position.x) * magnetPower;
+            magnetVector.y = (magnetPosition.y - instance.Instance.transform.position.y) * magnetPower;
+
+            return magnetVector;
+        }
+        else
+        {
+            return Vector2.zero;
+        }
     }
 
     public class MovingObject

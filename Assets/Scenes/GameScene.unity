@@ -242,10 +242,13 @@ MonoBehaviour:
     SpawnFrequency: 0.2
     IsHealth: 0
   - Prefab: {fileID: 6493221467804894378, guid: 570bc7ee65f2db748acb778cf6a07679, type: 3}
-    SpawnFrequency: 0.05
+    SpawnFrequency: 0.04
     IsHealth: 0
   - Prefab: {fileID: 7090905221310947907, guid: 79a2d99ca26ef484185997114c140199, type: 3}
     SpawnFrequency: 0.05
+    IsHealth: 0
+  - Prefab: {fileID: 550612355592888559, guid: 5d4cfa1ee1ee2834584612bccabf2d4e, type: 3}
+    SpawnFrequency: 0.01
     IsHealth: 0
   minRotateSpeed: 100
   maxRotateSpeed: 200
@@ -254,8 +257,8 @@ MonoBehaviour:
   maxTimeStep: 1.5
   startPackCount: 2
   maxPackCount: 5
-  scoreForMinStep: 1000
-  scoreForMaxPack: 1000
+  scoreForMinStep: 2000
+  scoreForMaxPack: 2000
 --- !u!4 &317747653
 Transform:
   m_ObjectHideFlags: 0

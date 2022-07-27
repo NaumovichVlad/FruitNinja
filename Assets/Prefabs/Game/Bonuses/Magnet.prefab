@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7090905221310947907
+--- !u!1 &550612355592888559
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7090905221310947933}
-  - component: {fileID: 7090905221310947906}
+  - component: {fileID: 2038029674973928729}
+  - component: {fileID: 2656105975937509219}
   m_Layer: 0
-  m_Name: Freezing
+  m_Name: Magnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7090905221310947933
+--- !u!4 &2038029674973928729
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7090905221310947907}
+  m_GameObject: {fileID: 550612355592888559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.333333, y: -3.0977917, z: 0}
+  m_LocalPosition: {x: 7.465888, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7090905221310947906
+--- !u!114 &2656105975937509219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7090905221310947907}
+  m_GameObject: {fileID: 550612355592888559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066752dc8e83e0a499d8099fbea32a2c, type: 3}
+  m_Script: {fileID: 11500000, guid: d286922dd251b384e85ebd0bf3a2eacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fruitHalfController: {fileID: -2289398569987863385, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
   partSprites:
-  - {fileID: 3135458365584056158, guid: cb7dc8455c680af4087183829ed28f3d, type: 3}
-  - {fileID: 7236189470174134677, guid: cb7dc8455c680af4087183829ed28f3d, type: 3}
-  freezePower: 4
-  freezeTime: 700
+  - {fileID: 4877825377717948546, guid: 5b9bd9a8a468745479e048d29c77b736, type: 3}
+  - {fileID: 5011368590914060170, guid: 5b9bd9a8a468745479e048d29c77b736, type: 3}
+  magnetPower: 8
+  magnetRadius: 30
+  magnetTime: 10

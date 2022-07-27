@@ -33,13 +33,13 @@ public class CuttingController : MonoBehaviour
         Destroy(cutObject.Instance);
     }
 
-    public void Cut(MoveController.MovingObject cutObject, List<GameObject> halfs, float cutSpeed)
+    public void Cut(MoveController.MovingObject cutObject, List<GameObject> halfs, float cutSpeed, bool destroy = false)
     {
         int side = -1;
 
         for (var i = 0; i < cutObject.Instance.transform.childCount; i++)
         {
-            var halfInstance = Instantiate(halfs[i], halfs[i].transform.position, halfs[i].transform.rotation);
+            var halfInstance = Instantiate(halfs[i].gameObject, halfs[i].transform.position, halfs[i].transform.rotation);
             var newDirection = new Vector2();
 
             if (halfInstance.transform.rotation.z < 0)
@@ -58,6 +58,11 @@ public class CuttingController : MonoBehaviour
             });
 
             ShadowController.GetInstance().AddShadow(halfInstance.transform.GetChild(0).gameObject);
+        }
+
+        if(destroy)
+        {
+            Destroy(cutObject.Instance);
         }
     }
 }
