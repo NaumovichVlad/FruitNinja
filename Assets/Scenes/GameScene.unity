@@ -222,12 +222,12 @@ MonoBehaviour:
   - SizeInPercent: 25
     Side: 0
     LaunchMaxAngle: 75
-    LaunchMinAngle: 40
+    LaunchMinAngle: 35
     Frequency: 2
   - SizeInPercent: 35
     Side: 1
     LaunchMaxAngle: 75
-    LaunchMinAngle: 40
+    LaunchMinAngle: 35
     Frequency: 2
   - SizeInPercent: 99
     Side: 2
@@ -236,19 +236,22 @@ MonoBehaviour:
     Frequency: 10
   spawnPrefabs:
   - Prefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
-    SpawnFrequency: 0.7
+    SpawnFrequency: 0.6
     IsHealth: 1
   - Prefab: {fileID: 2398194152217865365, guid: 144aba5eb16e43645b7f0a0d8c32f11c, type: 3}
     SpawnFrequency: 0.2
     IsHealth: 0
   - Prefab: {fileID: 6493221467804894378, guid: 570bc7ee65f2db748acb778cf6a07679, type: 3}
-    SpawnFrequency: 0.04
+    SpawnFrequency: 0.05
     IsHealth: 0
   - Prefab: {fileID: 7090905221310947907, guid: 79a2d99ca26ef484185997114c140199, type: 3}
     SpawnFrequency: 0.05
     IsHealth: 0
   - Prefab: {fileID: 550612355592888559, guid: 5d4cfa1ee1ee2834584612bccabf2d4e, type: 3}
-    SpawnFrequency: 0.01
+    SpawnFrequency: 0.02
+    IsHealth: 0
+  - Prefab: {fileID: 3626314857863769867, guid: 42f3a3977104cf64e93e21e920ac5187, type: 3}
+    SpawnFrequency: 0.08
     IsHealth: 0
   minRotateSpeed: 100
   maxRotateSpeed: 200

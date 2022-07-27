@@ -37,7 +37,7 @@ public class CuttingController : MonoBehaviour
     {
         int side = -1;
 
-        for (var i = 0; i < cutObject.Instance.transform.childCount; i++)
+        for (var i = 0; i < halfs.Count; i++)
         {
             var halfInstance = Instantiate(halfs[i].gameObject, halfs[i].transform.position, halfs[i].transform.rotation);
             var newDirection = new Vector2();

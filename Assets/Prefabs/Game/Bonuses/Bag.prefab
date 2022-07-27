@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2398194152217865365
+--- !u!1 &3626314857863769867
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6848499512929577396}
-  - component: {fileID: 5293114256189230880}
+  - component: {fileID: 3626314857863769868}
+  - component: {fileID: 4573858870990484851}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: Bag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6848499512929577396
+--- !u!4 &3626314857863769868
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398194152217865365}
+  m_GameObject: {fileID: 3626314857863769867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.333333, y: -4.6120267, z: 0}
+  m_LocalPosition: {x: -8.333333, y: -3.416082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5293114256189230880
+--- !u!114 &4573858870990484851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2398194152217865365}
+  m_GameObject: {fileID: 3626314857863769867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf50ce78c04386b47a604292f4a924ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 62ae8725f1d296f47a39aafb5515dc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 9014989976131053, guid: d06481c0e7dab2c42bd7a1a9e0d7baf4, type: 3}
-  bombPartsSprites:
-  - {fileID: -2613247888821195678, guid: 47723087b839c0a489dcefe9c3957268, type: 3}
-  - {fileID: -8469204400738329757, guid: 47723087b839c0a489dcefe9c3957268, type: 3}
-  - {fileID: 8114985772114671235, guid: 47723087b839c0a489dcefe9c3957268, type: 3}
-  - {fileID: -4975520578640395922, guid: 47723087b839c0a489dcefe9c3957268, type: 3}
   fruitHalfController: {fileID: -2289398569987863385, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
-  explosionPower: 5
+  partSprites:
+  - {fileID: 21300000, guid: e63a3d977fc24184ab1861b1c79b5018, type: 3}
+  - {fileID: 21300000, guid: d749757b1855c9142bf0b9b07de5565d, type: 3}
+  - {fileID: 21300000, guid: dd8af31054386cd4da020605dcb5332b, type: 3}
+  fruitPrefab: {fileID: 1671368125854195770, guid: 5f7fab627d7187f4abda7831341555d5, type: 3}
+  fruitCount: 4
+  fruitSpeed: 2
+  fruitRotationSpeed: 60
