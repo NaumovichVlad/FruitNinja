@@ -44,7 +44,7 @@ public class BagController : MonoBehaviour
                 fruitSpeed * Mathf.Cos(Mathf.Deg2Rad * angle * (i + 1)), fruitSpeed * Mathf.Sin(Mathf.Deg2Rad * angle * (i + 1)));
 
             fruitPrefab.transform.position = gameObject.transform.position;
-            fruitPrefab.transform.Translate(direction + fruitPrefab.transform.localScale);
+            fruitPrefab.transform.Translate(fruitPrefab.transform.localScale);
 
             MoveController.GetInstance().AddMovingObject(new MoveController.MovingObject()
             {
