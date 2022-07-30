@@ -37,7 +37,6 @@ public class SpawnController : MonoBehaviour
     }
 
     private int _fruitCount;
-    private float _timeStep;
     private Coroutine _spawnCoroutine;
 
     [SerializeField] private Camera mainCamera;
@@ -46,18 +45,15 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private float minRotateSpeed;
     [SerializeField] private float maxRotateSpeed;
     [SerializeField] private float fruitSpeed;
-    [SerializeField] private float minTimeStep;
-    [SerializeField] private float maxTimeStep;
+    [SerializeField] private float timeStep;
     [SerializeField] private int startPackCount;
     [SerializeField] private int maxPackCount;
-    [SerializeField] private int scoreForMinStep;
     [SerializeField] private int scoreForMaxPack;
 
     void Start()
     {
         HealthController.LoseEvent += OnLose;
         LosePopUpController.RestartEvent += Launch;
-        _timeStep = maxTimeStep;
         _fruitCount = startPackCount;
         Launch();
     }
@@ -76,7 +72,7 @@ public class SpawnController : MonoBehaviour
 
     IEnumerator SpawnFruits(float[] frequencies)
     {
-        yield return new WaitForSeconds(_timeStep);
+        yield return new WaitForSeconds(timeStep);
 
         var frequency = Random.value * frequencies[frequencies.Length - 1];
 
@@ -113,8 +109,10 @@ public class SpawnController : MonoBehaviour
 
     private SpawnObject GetSpawnObject()
     {
-        var randomValue = Random.value;
         var frequency = 0f;
+
+        var totalWeight = spawnPrefabs.Sum(p => p.SpawnFrequency);
+        var randomValue = Random.value * totalWeight;
 
         foreach (var spawnObject in spawnPrefabs)
         {
@@ -203,11 +201,6 @@ public class SpawnController : MonoBehaviour
         {
             var scoreForIncrease = scoreForMaxPack / (maxPackCount - startPackCount);
             _fruitCount = startPackCount + score / scoreForIncrease;
-        }
-
-        if (score <= scoreForMinStep)
-        {
-            _timeStep = maxTimeStep - (float)score / scoreForMinStep * (maxTimeStep - minTimeStep);
         }
     }
 }
