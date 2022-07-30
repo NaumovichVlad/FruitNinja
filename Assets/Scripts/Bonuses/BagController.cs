@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BagController : MonoBehaviour
 {
-    [SerializeField] private FruitHalfController fruitHalfController;
+    [SerializeField] private SpriteRenderer partRenderer;
     [SerializeField] private List<Sprite> partSprites;
     [SerializeField] private GameObject fruitPrefab;
     [SerializeField] private int fruitCount;
@@ -23,12 +24,15 @@ public class BagController : MonoBehaviour
     {
         foreach (var part in partSprites)
         {
-            fruitHalfController.CreateNewHalf(part);
+            partRenderer.sprite = part;
 
-            var partInstance = Instantiate(fruitHalfController.gameObject);
+            var partInstance = Instantiate(partRenderer.gameObject);
 
             partInstance.transform.SetParent(gameObject.transform, false);
-            ShadowController.GetInstance().CreateShadow(partInstance);
+            ShadowController.GetInstance().CreateShadow(partInstance, part);
+
+            partInstance.transform.position = gameObject.transform.position;
+            partInstance.transform.rotation = gameObject.transform.rotation;
 
             _parts.Add(partInstance);
         }
@@ -62,11 +66,9 @@ public class BagController : MonoBehaviour
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
 
-            Destroy(_parts[1]);
+            partSprites.RemoveAt(1);
 
-            _parts.RemoveAt(1);
-
-            CuttingController.GetInstance().Cut(states, _parts, swipeSpeed);
+            CuttingController.GetInstance().Cut(states, partSprites, swipeSpeed);
 
             InitializeFruits();
 

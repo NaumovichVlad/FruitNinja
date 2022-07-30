@@ -5,14 +5,14 @@ using UnityEngine;
 public class BombController : MonoBehaviour
 {
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private List<Sprite> bombPartsSprites;
-    [SerializeField] private FruitHalfController fruitHalfController;
+    [SerializeField] private SpriteRenderer bombPartRenderer;
+    [SerializeField] private Sprite bombSprite;
     [SerializeField] private float explosionPower;
-
-    private readonly List<GameObject> _bombParts = new List<GameObject>();
 
     public static event OnExplosion ExplosionEvent;
     public delegate void OnExplosion(Vector2 explosionPosition, float explosionPower);
+
+    private const int _bombPartsCount = 4;
 
     void Start()
     {
@@ -22,17 +22,7 @@ public class BombController : MonoBehaviour
 
     private void InitializeBomb()
     {
-        foreach (var part in bombPartsSprites)
-        {
-            fruitHalfController.CreateNewHalf(part);
-
-            var partInstance = Instantiate(fruitHalfController.gameObject);
-
-            partInstance.transform.SetParent(gameObject.transform, false);
-            ShadowController.GetInstance().CreateShadow(partInstance);
-
-            _bombParts.Add(partInstance);
-        }
+        ShadowController.GetInstance().CreateShadow(gameObject, bombSprite);
     }
 
     private void OnSwipe(Vector2 direction, Vector2 swipePosition, float swipeSpeed)
@@ -56,13 +46,17 @@ public class BombController : MonoBehaviour
     private void LaunchParts(MoveController.MovingObject states)
     {
         const float angle = 360;
-        var launchAngle = angle / _bombParts.Count;
+        var launchAngle = angle / _bombPartsCount;
 
-        for (var i = 0; i < _bombParts.Count; i++)
+        var parts = CreateSpriteParts(bombSprite);
+
+        for (var i = 0; i < _bombPartsCount; i++)
         {
+            bombPartRenderer.sprite = parts[i];
+
             var partInstance = new MoveController.MovingObject()
             {
-                Instance = Instantiate(_bombParts[i].gameObject),
+                Instance = Instantiate(bombPartRenderer.gameObject),
                 RotationSpeed = states.RotationSpeed,
                 Direction = new Vector2(
                     states.Direction.x * Mathf.Cos(Mathf.Deg2Rad * launchAngle * i), states.Direction.y * Mathf.Sin(Mathf.Deg2Rad * launchAngle * i))
@@ -72,9 +66,30 @@ public class BombController : MonoBehaviour
             partInstance.Instance.transform.rotation = gameObject.transform.rotation;
 
             MoveController.GetInstance().AddMovingObject(partInstance);
-            ShadowController.GetInstance().AddShadow(partInstance.Instance.transform.GetChild(0).gameObject);
+            ShadowController.GetInstance().CreateShadow(partInstance.Instance, parts[i]);
         }
         
+    }
+
+    private List<Sprite> CreateSpriteParts(Sprite texture)
+    {
+        var parts = new List<Sprite>();
+
+        var xLength = texture.texture.width / _bombPartsCount * 2;
+        var yLength = texture.texture.height / _bombPartsCount * 2;
+
+        for (var i = 0; i < _bombPartsCount / 2; i++)
+        {
+            for (var j = 0; j < _bombPartsCount / 2; j++)
+            {
+                var rect = new Rect(xLength * i, yLength * j, xLength, yLength);
+                var part = Sprite.Create(texture.texture, rect, new Vector2(1 - i, Mathf.Abs(j - 1)));
+
+                parts.Add(part);
+            }
+        }
+
+        return parts;
     }
 
     private float CalculateLength(Vector2 firstVector, Vector2 secondVector)

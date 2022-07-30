@@ -7,7 +7,7 @@ public class ShadowController : MonoBehaviour
     private readonly List<GameObject> _shadows = new List<GameObject>();
     private static ShadowController shadowControllerinstance;
 
-    [SerializeField] private GameObject shadowPrefab;
+    [SerializeField] private SpriteRenderer shadowRenderer;
     [SerializeField] private float distanceFromObject;
     [SerializeField] private float shadowTransparency;
 
@@ -21,24 +21,20 @@ public class ShadowController : MonoBehaviour
         return shadowControllerinstance;
     }
 
-    public void CreateShadow(GameObject instance)
+    public void CreateShadow(GameObject instance, Sprite shadowSprite)
     {
-        var shadowSprite = shadowPrefab.GetComponent<SpriteRenderer>();
         var color = Color.black;
 
         color.a = shadowTransparency;
-        shadowSprite.color = color;
-        shadowSprite.sprite = instance.GetComponent<SpriteRenderer>().sprite;
+        shadowRenderer.color = color;
+        shadowRenderer.sprite = shadowSprite;
 
-        var shadow = Instantiate(shadowPrefab);
+        var shadow = Instantiate(shadowRenderer.gameObject);
         shadow.transform.SetParent(instance.transform, false);
 
         _shadows.Add(shadow);
-    }
 
-    public void AddShadow(GameObject shadow)
-    {
-        _shadows.Add(shadow);
+        MoveAndRotateShadows();
     }
 
     void Update()

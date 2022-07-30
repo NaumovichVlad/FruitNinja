@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class MagnetController : MonoBehaviour
 {
-    [SerializeField] private FruitHalfController fruitHalfController;
-    [SerializeField] private List<Sprite> partSprites;
+    [SerializeField] private Sprite magnetSprite;
     [SerializeField] private float magnetPower;
     [SerializeField] private float magnetRadius;
     [SerializeField] private int magnetTime;
 
-    private readonly List<GameObject> _parts = new List<GameObject>();
     private bool _isEnabled;
     private float _timer;
 
@@ -25,17 +23,7 @@ public class MagnetController : MonoBehaviour
 
     private void InitializeMagnet()
     {
-        foreach (var part in partSprites)
-        {
-            fruitHalfController.CreateNewHalf(part);
-
-            var partInstance = Instantiate(fruitHalfController.gameObject);
-
-            partInstance.transform.SetParent(gameObject.transform, false);
-            ShadowController.GetInstance().CreateShadow(partInstance);
-
-            _parts.Add(partInstance);
-        }
+        ShadowController.GetInstance().CreateShadow(gameObject, magnetSprite);
     }
 
     private void OnSwipe(Vector2 direction, Vector2 swipePosition, float swipeSpeed)
@@ -68,7 +56,9 @@ public class MagnetController : MonoBehaviour
             else
             {
                 _isEnabled = false;
-                CuttingController.GetInstance().Cut(_states, _parts, _swipeSpeed);
+
+                CuttingController.GetInstance().Cut(_states, magnetSprite, _swipeSpeed);
+
                 Destroy(gameObject);
             }
         }

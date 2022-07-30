@@ -88,6 +88,7 @@ public class MoveController : MonoBehaviour
     {
         _freezingPower = freezingPower;
         _freezingTime = freezingTime;
+        _freezingTimer = 0;
         _isFreezed = true;
     }
 
@@ -125,15 +126,14 @@ public class MoveController : MonoBehaviour
 
                 if (_magnetizms[i].MagnetTimer > _magnetizms[i].MagnetTime)
                 {
-                    movingObject.Direction += 
-                        CalculateMagnitizationVector(_magnetizms[i].MagnetPosition, movingObject, _magnetizms[i].MagnetPower, _magnetizms[i].MagnetRadius);
                     _magnetizms.RemoveAt(i--);
                 }
             }
+
+            movingObject.Direction = magnetVector;
         }
 
-        
-        movingObject.Instance.transform.Translate((movingObject.Direction + magnetVector) * Time.deltaTime / booster, Space.World);
+        movingObject.Instance.transform.Translate(movingObject.Direction * Time.deltaTime / booster, Space.World);
         movingObject.Instance.transform.Rotate(new Vector3(0, 0, movingObject.RotationSpeed * Time.deltaTime / booster));
         movingObject.Direction += attractiveForce / booster * Time.deltaTime;
     }

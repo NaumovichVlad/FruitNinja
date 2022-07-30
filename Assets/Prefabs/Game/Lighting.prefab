@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4213433d8fbc6494684dc33b57e7735a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveController: {fileID: 0}
-  shadowPrefab: {fileID: 2219464547010073312, guid: 848d29e7c71386e43b4ff0363cb57a26, type: 3}
+  shadowRenderer: {fileID: 3965924591818736564, guid: 848d29e7c71386e43b4ff0363cb57a26, type: 3}
   distanceFromObject: 0.1
+  shadowTransparency: 0

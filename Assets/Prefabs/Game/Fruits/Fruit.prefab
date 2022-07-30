@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671368125854195772}
   - component: {fileID: -3338853639208424412}
+  - component: {fileID: -2298216261781957851}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671368125854195770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.20871833, y: -5, z: 0}
+  m_LocalPosition: {x: 9.069132, y: 1.6351082, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,36 +45,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitSprites:
-  - FirstHalf: {fileID: 2621174913631416683, guid: b58b679c6a9da684d87e2477d14df705, type: 3}
-    SecondHalf: {fileID: 7434577363714634194, guid: b58b679c6a9da684d87e2477d14df705, type: 3}
+  - Fruit: {fileID: 21300000, guid: b58b679c6a9da684d87e2477d14df705, type: 3}
     Particle: {fileID: 21300000, guid: 9f186e42a38a89b4280b485e41d0fec1, type: 3}
     JuiceColor: {r: 0.9176471, g: 0.79215693, b: 0.20784315, a: 1}
-  - FirstHalf: {fileID: 1894136533704748119, guid: cef45b09c07ff7c4a9841f73fe6b0c39, type: 3}
-    SecondHalf: {fileID: -7438678658335656237, guid: cef45b09c07ff7c4a9841f73fe6b0c39, type: 3}
+  - Fruit: {fileID: 21300000, guid: cef45b09c07ff7c4a9841f73fe6b0c39, type: 3}
     Particle: {fileID: 21300000, guid: 175cc2b1a017f474989285961329f523, type: 3}
     JuiceColor: {r: 0.7686275, g: 0.1254902, b: 0.1254902, a: 1}
-  - FirstHalf: {fileID: 1784099714869758312, guid: bbfb9b81c06d50f4eb9c610da7171b06, type: 3}
-    SecondHalf: {fileID: 2870872194672625604, guid: bbfb9b81c06d50f4eb9c610da7171b06, type: 3}
+  - Fruit: {fileID: 21300000, guid: bbfb9b81c06d50f4eb9c610da7171b06, type: 3}
     Particle: {fileID: 21300000, guid: 175cc2b1a017f474989285961329f523, type: 3}
     JuiceColor: {r: 0.7686275, g: 0.1254902, b: 0.1254902, a: 1}
-  - FirstHalf: {fileID: -857782560371279021, guid: cfd3905fd1ef0394eb8200227d085e9a, type: 3}
-    SecondHalf: {fileID: -6064067350669664980, guid: cfd3905fd1ef0394eb8200227d085e9a, type: 3}
+  - Fruit: {fileID: 21300000, guid: cfd3905fd1ef0394eb8200227d085e9a, type: 3}
     Particle: {fileID: 21300000, guid: 4104ba3eca04cd34896d465be988dd07, type: 3}
     JuiceColor: {r: 0.21568629, g: 0.7686275, b: 0.1254902, a: 1}
-  - FirstHalf: {fileID: -2641476624080171375, guid: 8d8363ec4d8bd884fbe5af7c31cee3f3, type: 3}
-    SecondHalf: {fileID: -7179987998461443121, guid: 8d8363ec4d8bd884fbe5af7c31cee3f3, type: 3}
+  - Fruit: {fileID: 21300000, guid: 8d8363ec4d8bd884fbe5af7c31cee3f3, type: 3}
     Particle: {fileID: 21300000, guid: 9f186e42a38a89b4280b485e41d0fec1, type: 3}
     JuiceColor: {r: 0.9176471, g: 0.79215693, b: 0.20784315, a: 1}
-  - FirstHalf: {fileID: 876074129589121764, guid: 9cc88cb10d82a1c42bd09b3529db6682, type: 3}
-    SecondHalf: {fileID: 4189062024125327192, guid: 9cc88cb10d82a1c42bd09b3529db6682, type: 3}
+  - Fruit: {fileID: 21300000, guid: 9cc88cb10d82a1c42bd09b3529db6682, type: 3}
     Particle: {fileID: 21300000, guid: 6fd98efd13042d4428e3166ccbf47ad2, type: 3}
     JuiceColor: {r: 0.4431373, g: 0.18039216, b: 0.87843144, a: 1}
-  - FirstHalf: {fileID: -7953753599046468258, guid: 9c46265002aed6d45aff15ea8f80af26, type: 3}
-    SecondHalf: {fileID: -5817435106415095685, guid: 9c46265002aed6d45aff15ea8f80af26, type: 3}
+  - Fruit: {fileID: 21300000, guid: 9c46265002aed6d45aff15ea8f80af26, type: 3}
     Particle: {fileID: 21300000, guid: 9f186e42a38a89b4280b485e41d0fec1, type: 3}
     JuiceColor: {r: 0.9176471, g: 0.79215693, b: 0.20784315, a: 1}
-  - FirstHalf: {fileID: 3349790185334214872, guid: c2e1a45474927094cbe76482363f815e, type: 3}
-    SecondHalf: {fileID: -7576808777241287495, guid: c2e1a45474927094cbe76482363f815e, type: 3}
+  - Fruit: {fileID: 21300000, guid: c2e1a45474927094cbe76482363f815e, type: 3}
     Particle: {fileID: 21300000, guid: 4104ba3eca04cd34896d465be988dd07, type: 3}
     JuiceColor: {r: 0.21568629, g: 0.7686275, b: 0.1254902, a: 1}
-  fruitHalfCreator: {fileID: -2289398569987863385, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
+  fruitRenderer: {fileID: -2298216261781957851}
+--- !u!212 &-2298216261781957851
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671368125854195770}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

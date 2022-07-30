@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class HeartController : MonoBehaviour
 {
-    [SerializeField] private FruitHalfController fruitHalfController;
-    [SerializeField] private List<Sprite> partSprites;
+    [SerializeField] private Sprite heartSprite;
     [SerializeField] private float healthSpeed;
-
-    private readonly List<GameObject> _parts = new List<GameObject>();
 
     private void Start()
     {
@@ -18,17 +15,7 @@ public class HeartController : MonoBehaviour
 
     private void InitializeHeart()
     {
-        foreach (var part in partSprites)
-        {
-            fruitHalfController.CreateNewHalf(part);
-
-            var partInstance = Instantiate(fruitHalfController.gameObject);
-
-            partInstance.transform.SetParent(gameObject.transform, false);
-            ShadowController.GetInstance().CreateShadow(partInstance);
-
-            _parts.Add(partInstance);
-        }
+        ShadowController.GetInstance().CreateShadow(gameObject, heartSprite);
     }
 
     private void OnSwipe(Vector2 direction, Vector2 swipePosition, float swipeSpeed)
@@ -37,7 +24,7 @@ public class HeartController : MonoBehaviour
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
 
-            CuttingController.GetInstance().Cut(states, _parts, swipeSpeed);
+            CuttingController.GetInstance().Cut(states, heartSprite, swipeSpeed);
 
             HealthController.GetInstance().AddHealth(transform.position, healthSpeed);
 

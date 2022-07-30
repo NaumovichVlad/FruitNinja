@@ -239,19 +239,19 @@ MonoBehaviour:
     SpawnFrequency: 0.6
     IsHealth: 1
   - Prefab: {fileID: 2398194152217865365, guid: 144aba5eb16e43645b7f0a0d8c32f11c, type: 3}
-    SpawnFrequency: 0.2
+    SpawnFrequency: 0
     IsHealth: 0
   - Prefab: {fileID: 6493221467804894378, guid: 570bc7ee65f2db748acb778cf6a07679, type: 3}
-    SpawnFrequency: 0.05
+    SpawnFrequency: 0
     IsHealth: 0
   - Prefab: {fileID: 7090905221310947907, guid: 79a2d99ca26ef484185997114c140199, type: 3}
-    SpawnFrequency: 0.05
+    SpawnFrequency: 0
     IsHealth: 0
   - Prefab: {fileID: 550612355592888559, guid: 5d4cfa1ee1ee2834584612bccabf2d4e, type: 3}
-    SpawnFrequency: 0.02
+    SpawnFrequency: 0
     IsHealth: 0
   - Prefab: {fileID: 3626314857863769867, guid: 42f3a3977104cf64e93e21e920ac5187, type: 3}
-    SpawnFrequency: 0.08
+    SpawnFrequency: 0.4
     IsHealth: 0
   minRotateSpeed: 100
   maxRotateSpeed: 200
@@ -661,7 +661,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boost: 1
   particlesController: {fileID: 649516426}
+  halfRenderer: {fileID: 3273841612903806323, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
   halfsScatterAngle: 60
+  partCount: 2
 --- !u!114 &649516426
 MonoBehaviour:
   m_ObjectHideFlags: 0

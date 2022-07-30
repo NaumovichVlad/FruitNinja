@@ -7,9 +7,7 @@ public class FruitController : MonoBehaviour
     [System.Serializable]
     private class FruitSprites
     {
-        public Sprite FirstHalf;
-
-        public Sprite SecondHalf;
+        public Sprite Fruit;
 
         public Sprite Particle;
 
@@ -17,30 +15,15 @@ public class FruitController : MonoBehaviour
     }
 
     private FruitSprites _fruit;
-    private readonly List<GameObject> halfs = new List<GameObject>();
 
     [SerializeField] private List<FruitSprites> fruitSprites;
-    [SerializeField] private FruitHalfController fruitHalfCreator;
-
-    public static event OnCut CutEvent;
-    public delegate void OnCut(MoveController.MovingObject cutObject, List<GameObject> halfs, 
-        Sprite particle, Color juiceColor, Vector2 cutDirection, float cutSpeed);
+    [SerializeField] private SpriteRenderer fruitRenderer;
 
     private void InitializeFruit()
     {
         _fruit = GetRandomFruitSprite();
-        AddHalf(_fruit.FirstHalf);
-        AddHalf(_fruit.SecondHalf);
-
-    }
-
-    private void AddHalf(Sprite half)
-    {
-        fruitHalfCreator.CreateNewHalf(half);
-        var halfInstance = Instantiate(fruitHalfCreator.gameObject);
-        halfInstance.transform.SetParent(gameObject.transform, false);
-        halfs.Add(halfInstance);
-        ShadowController.GetInstance().CreateShadow(halfInstance);
+        fruitRenderer.sprite = _fruit.Fruit;
+        ShadowController.GetInstance().CreateShadow(gameObject, _fruit.Fruit);
     }
 
     private FruitSprites GetRandomFruitSprite()
@@ -60,8 +43,11 @@ public class FruitController : MonoBehaviour
         {
             var states = MoveController.GetInstance().PeekMovingObject(gameObject);
 
-            CutEvent(states, halfs, _fruit.Particle, _fruit.JuiceColor, direction, swipeSpeed);
+            CuttingController.GetInstance().Cut(states, _fruit.Fruit, _fruit.Particle, _fruit.JuiceColor, direction, swipeSpeed);
+
             ScoreCounterController.GetInstance().AddScore(gameObject);
+
+            Destroy(gameObject);
         }
     }
 

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6493221467804894378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9507966, y: -5, z: 0}
+  m_LocalPosition: {x: 8.333333, y: -4.9542627, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e0b91c5e1267148ad158d52c129c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitHalfController: {fileID: -2289398569987863385, guid: 3eb4ef631f816bf42a61d5a5b80376b5, type: 3}
-  partSprites:
-  - {fileID: -205270267638800340, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}
-  - {fileID: 7904136456745960365, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}
+  heartSprite: {fileID: 21300000, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}
   healthSpeed: 3
 --- !u!212 &1752259924425067298
 SpriteRenderer:
@@ -89,14 +86,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5d89b7b42d648664ca72dff8f3145d9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.62, y: 2.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
