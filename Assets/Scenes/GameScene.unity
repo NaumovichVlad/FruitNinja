@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa5eafb159c20243ad2cf50d471db50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeLineLifetime: 1
+  swipeLineLifetime: 0.001
   line: {fileID: 1084448359}
 --- !u!120 &1084448359
 LineRenderer:
@@ -812,13 +812,13 @@ LineRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.39169726
-        value: 0.24209145
-        inSlope: 0.6738891
-        outSlope: 0.6738891
+        time: 0.48550284
+        value: 0.24208945
+        inSlope: 0.0066174185
+        outSlope: 0.0066174185
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0.9163562
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
@@ -861,8 +861,8 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 5
+    numCornerVertices: 90
+    numCapVertices: 50
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: f18731c73c3201f4c912d54e958c03f7, type: 3}
   m_Color: {r: 0.06422338, g: 0.6792453, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 0.98490566, b: 0.98490566, a: 1}
-  m_EffectDistance: {x: 5, y: 5}
+  m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
 --- !u!1001 &1247429768
 PrefabInstance:
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: f18731c73c3201f4c912d54e958c03f7, type: 3}
   m_Color: {r: 0.9433962, g: 0.8415429, b: 0.11035952, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

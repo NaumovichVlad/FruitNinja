@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7090905221310947907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5287752, y: -5, z: 0}
+  m_LocalPosition: {x: -8.093376, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeSprite: {fileID: 21300000, guid: cb7dc8455c680af4087183829ed28f3d, type: 3}
   freezePower: 4
-  freezeTime: 700
+  freezeTime: 350
 --- !u!212 &8602194369765524016
 SpriteRenderer:
   m_ObjectHideFlags: 0
