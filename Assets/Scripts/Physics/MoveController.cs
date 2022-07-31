@@ -122,7 +122,7 @@ public class MoveController : MonoBehaviour
                 magnetVector += 
                     CalculateMagnitizationVector(_magnetizms[i].MagnetPosition, movingObject, _magnetizms[i].MagnetPower, _magnetizms[i].MagnetRadius);
 
-                _magnetizms[i].MagnetTimer += Time.fixedDeltaTime;
+                _magnetizms[i].MagnetTimer += Time.deltaTime;
 
                 if (_magnetizms[i].MagnetTimer > _magnetizms[i].MagnetTime)
                 {

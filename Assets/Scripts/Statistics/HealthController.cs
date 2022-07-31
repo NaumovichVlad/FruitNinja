@@ -156,6 +156,12 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        LosePopUpController.RestartEvent -= InitializeHealth;
+        BombController.ExplosionEvent -= OnExplode;
+    }
+
     private class MovedHealth
     {
         public GameObject Health;

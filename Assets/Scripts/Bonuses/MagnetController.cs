@@ -9,12 +9,6 @@ public class MagnetController : MonoBehaviour
     [SerializeField] private float magnetRadius;
     [SerializeField] private int magnetTime;
 
-    private bool _isEnabled;
-    private float _timer;
-
-    private MoveController.MovingObject _states;
-    private float _swipeSpeed;
-
     private void Start()
     {
         InitializeMagnet();
@@ -39,30 +33,12 @@ public class MagnetController : MonoBehaviour
             states.RotationSpeed = 0;
             states.Direction = Vector2.zero;
 
-            _states = states;
-            _swipeSpeed = swipeSpeed;
-            _isEnabled = true;
+            CuttingController.GetInstance().Cut(states, magnetSprite, swipeSpeed);
+
+            Destroy(gameObject);
         }
     }
 
-    private void Update()
-    {
-        if (_isEnabled)
-        {
-            if (_timer < magnetTime)
-            {
-                _timer += Time.fixedDeltaTime;
-            }
-            else
-            {
-                _isEnabled = false;
-
-                CuttingController.GetInstance().Cut(_states, magnetSprite, _swipeSpeed);
-
-                Destroy(gameObject);
-            }
-        }
-    }
 
     private float CalculateLength(Vector2 firstVector, Vector2 secondVector)
     {

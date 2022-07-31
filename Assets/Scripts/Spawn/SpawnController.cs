@@ -203,4 +203,10 @@ public class SpawnController : MonoBehaviour
             _fruitCount = startPackCount + score / scoreForIncrease;
         }
     }
+    
+    void OnDestroy()
+    {
+        HealthController.LoseEvent -= OnLose;
+        LosePopUpController.RestartEvent -= Launch;
+    }
 }

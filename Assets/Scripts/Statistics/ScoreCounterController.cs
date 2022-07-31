@@ -14,6 +14,7 @@ public class ScoreCounterController : MonoBehaviour
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
+    [SerializeField] private ComboTextController scoreTextController;
     [SerializeField] private ComboTextController comboTextController;
     [SerializeField] private string bestScoreKey;
     [SerializeField] private int pointForFruit;
@@ -54,17 +55,16 @@ public class ScoreCounterController : MonoBehaviour
             {
                 _combo++;
             }
-
-            comboTextController.SetCombo(_combo * pointForFruit);
-
-            var comboLabel = Instantiate(comboTextController.gameObject, gameObject.transform.parent);
-
-            comboLabel.transform.position = cuttedObject.transform.position;
         }
         else
         {
             _combo = 1;
         }
+
+        scoreTextController.SetCombo(pointForFruit * _combo);
+
+        var scorePointLabel = Instantiate(scoreTextController.gameObject, gameObject.transform.parent);
+        scorePointLabel.transform.position = cuttedObject.transform.position;
 
         _score += pointForFruit * _combo;
         scoreText.text = _score.ToString();
@@ -98,5 +98,11 @@ public class ScoreCounterController : MonoBehaviour
     public void SaveProgress()
     {
         PlayerPrefs.SetInt(bestScoreKey, _bestScore);
+    }
+
+    void OnDestroy()
+    {
+        SaveProgress();
+        LosePopUpController.RestartEvent -= OnRestart;
     }
 }

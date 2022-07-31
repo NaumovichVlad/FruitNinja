@@ -1237,6 +1237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1630413083}
   bestScoreText: {fileID: 1206611635}
+  scoreTextController: {fileID: -4428675872484802371, guid: 4a4ccc32e4ff531488893726c12254a5, type: 3}
   comboTextController: {fileID: -9158803014966056334, guid: 174c7e588b1923248bc7902b12aa62de, type: 3}
   bestScoreKey: player_bs
   pointForFruit: 10
